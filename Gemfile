@@ -16,6 +16,13 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 
+gem 'devise'
+
+gem 'cloudinary'
+gem 'carrierwave', '~> 0.11.2'
+gem 'paper_trail'
+gem 'omniauth-facebook'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
