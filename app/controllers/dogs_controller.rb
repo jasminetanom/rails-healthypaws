@@ -1,5 +1,13 @@
 class DogsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:create]
+  skip_before_action :authenticate_user!, only: [:new, :create]
+
+  def new
+    if current_user
+      @dog = Dog.new(user: current_user)
+    elsif guest_user
+      @dog = Dog.new(user: guest_user)
+    end
+  end
 
   def create
     @dog = Dog.new(dog_params)
