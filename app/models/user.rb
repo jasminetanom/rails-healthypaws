@@ -3,17 +3,17 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
   mount_uploader :photo, PhotoUploader
 
-  has_one :dog, dependent: :destroy
+  has_many :dog, dependent: :destroy
 
-  validates :first_name, :last_name, :photo, presence:true, unless: :from_omniauth?
+  validates :first_name, :last_name, presence:true, unless: :from_omniauth?
 
-  validates_presence_of :photo
+  # validates_presence_of :photo
   validates_integrity_of :photo
   validates_processing_of :photo
 
@@ -42,7 +42,7 @@ class User < ApplicationRecord
     provider && uid
   end
 
-  after_create :send_welcome_email
+  # after_create :send_welcome_email
 
   private
 

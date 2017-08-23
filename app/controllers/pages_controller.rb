@@ -6,4 +6,7 @@ class PagesController < ApplicationController
       redirect_to new_recipe_path
     end
   end
+
+  def dashboard
+  end
 end

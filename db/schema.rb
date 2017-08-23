@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170823031807) do
+ActiveRecord::Schema.define(version: 20170823080230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20170823031807) do
     t.string "activity_level"
     t.boolean "is_sterilized"
     t.string "life_stage"
-    t.string "weight_goal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "body_condition_score"
@@ -56,9 +55,6 @@ ActiveRecord::Schema.define(version: 20170823031807) do
     t.float "potassium_mg"
     t.float "sodium_mg"
     t.float "zinc_mg"
-    t.float "vitamin_c_mg"
-    t.float "thiamin_g"
-    t.float "riboflavin_g"
     t.float "niacin_mg"
     t.float "pyridoxine_mg"
     t.float "folate_ug"
@@ -66,9 +62,10 @@ ActiveRecord::Schema.define(version: 20170823031807) do
     t.float "vitamin_a_iu"
     t.float "vitamin_e_mg"
     t.float "vitamin_d_iu"
-    t.float "vitamin_k_ug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "riboflavin_mg"
+    t.float "thiamin_mg"
   end
 
   create_table "nutrition_reqs", force: :cascade do |t|
@@ -84,9 +81,6 @@ ActiveRecord::Schema.define(version: 20170823031807) do
     t.float "potassium_mg"
     t.float "sodium_mg"
     t.float "zinc_mg"
-    t.float "vitamin_c_mg"
-    t.float "thiamin_g"
-    t.float "riboflavin_g"
     t.float "niacin_mg"
     t.float "pyridoxine_mg"
     t.float "folate_ug"
@@ -94,9 +88,10 @@ ActiveRecord::Schema.define(version: 20170823031807) do
     t.float "vitamin_a_iu"
     t.float "vitamin_e_mg"
     t.float "vitamin_d_iu"
-    t.float "vitamin_k_ug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "riboflavin_mg"
+    t.float "thiamin_mg"
     t.index ["dog_id"], name: "index_nutrition_reqs_on_dog_id"
   end
 
