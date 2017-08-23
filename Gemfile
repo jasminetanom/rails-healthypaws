@@ -23,6 +23,8 @@ gem 'carrierwave', '~> 0.11.2'
 gem 'paper_trail'
 gem 'omniauth-facebook'
 
+gem "letter_opener", group: :development
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
