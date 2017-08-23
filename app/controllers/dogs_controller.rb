@@ -20,9 +20,7 @@ class DogsController < ApplicationController
       end
     end
     @dog.multipler = get_multiplier(dog_params)
-    if @dog.life_stage == "puppy"
-
-    else
+    if @dog.life_stage == "adult"
       reqs = get_maintenance_reqs(params[:weight], @dog.multiplier)
       @nutrition_req = NutritionReq.new(dog: @dog)
       reqs.each do |nutrient, amount|
