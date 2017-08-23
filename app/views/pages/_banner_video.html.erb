@@ -1,0 +1,20 @@
+<div class="banner-video">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
+
+  <!--  Content  -->
+  <div class="vid-content">
+    <h1>Feed your furry friend what fits them best
+    <br />
+    <span>
+      <%= link_to 'Create an account', "x", class: "btn btn-outline-dark btn-block" %>
+      <%= link_to 'Build a recipe', "x", class: "btn btn-outline-dark btn-block" %>
+    </span></h1>
+  </div>
+  <!--  Video is muted & autoplays, placed after major DOM elements for performance & has an image fallback  -->
+  <video autoplay loop id="video-background" muted plays-inline>
+    <source src="https://res.cloudinary.com/tanjamiee/video/upload/v1503465708/cute_puppy_on_beach_ynck7y.mp4" type="video/mp4">
+  </video>
+</div>
+
+
+
