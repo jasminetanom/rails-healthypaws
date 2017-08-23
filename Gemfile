@@ -24,6 +24,7 @@ gem 'cloudinary'
 gem 'carrierwave', '~> 0.11.2'
 gem 'paper_trail'
 gem 'omniauth-facebook'
+gem 'pry-byebug'
 
 gem "letter_opener", group: :development
 
