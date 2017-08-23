@@ -9,13 +9,15 @@ class User < ApplicationRecord
 
   mount_uploader :photo, PhotoUploader
 
-  has_one :dog, dependent: :destroy
+  has_many :dog, dependent: :destroy
 
-  # validates :first_name, :last_name, :photo, presence:true, unless: :from_omniauth?
+
+  validates :first_name, :last_name, presence:true, unless: :from_omniauth?
 
   # validates_presence_of :photo
-  # validates_integrity_of :photo
-  # validates_processing_of :photo
+  validates_integrity_of :photo
+  validates_processing_of :photo
+
 
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)
@@ -44,7 +46,7 @@ class User < ApplicationRecord
     provider && uid
   end
 
-  after_create :send_welcome_email
+  # after_create :send_welcome_email
 
   private
 
