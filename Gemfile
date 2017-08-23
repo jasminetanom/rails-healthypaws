@@ -18,6 +18,8 @@ gem 'uglifier'
 
 gem 'devise'
 
+gem 'acts_as_votable', '~> 0.10.0'
+
 gem 'cloudinary'
 gem 'carrierwave', '~> 0.11.2'
 gem 'paper_trail'
