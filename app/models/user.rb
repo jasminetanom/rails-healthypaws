@@ -11,11 +11,13 @@ class User < ApplicationRecord
 
   has_many :dog, dependent: :destroy
 
+
   validates :first_name, :last_name, presence:true, unless: :from_omniauth?
 
   # validates_presence_of :photo
   validates_integrity_of :photo
   validates_processing_of :photo
+
 
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)
@@ -23,6 +25,8 @@ class User < ApplicationRecord
     user_params[:facebook_picture_url] = auth.info.image
     user_params[:token] = auth.credentials.token
     user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
+    # Refactor
+    user_params[:confirmed_at] = Time.now
     user_params = user_params.to_h
 
     user = User.find_by(provider: auth.provider, uid: auth.uid)
