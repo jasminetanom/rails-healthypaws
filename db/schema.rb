@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822142843) do
+ActiveRecord::Schema.define(version: 20170823031807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,10 +24,11 @@ ActiveRecord::Schema.define(version: 20170822142843) do
     t.boolean "is_sterilized"
     t.string "life_stage"
     t.string "weight_goal"
-    t.float "coefficient"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "body_condition_score"
+    t.float "multiplier"
+    t.string "size"
     t.index ["user_id"], name: "index_dogs_on_user_id"
   end
 
