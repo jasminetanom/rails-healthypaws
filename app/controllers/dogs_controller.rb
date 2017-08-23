@@ -2,31 +2,24 @@ class DogsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:new, :create]
 
   def new
-    if current_user
-      @dog = Dog.new(user: current_user)
-    elsif guest_user
-      @dog = Dog.new(user: guest_user)
-    end
+    @user = current_or_guest_user
+    @dog = Dog.new(user: @user)
   end
 
   def create
     @dog = Dog.new(dog_params)
-    respond_to do |format|
-      if @dog.save
-        format.html { notice: 'Your dog\'s profile was successfully created.' }
-      else
-        format.html { render :new }
-        format.json { render json: @dog.errors, status: :unprocessable_entity }
+      unless @dog.save
+        render :new
       end
-    end
-    @dog.multipler = get_multiplier(dog_params)
-    reqs = get_reqs(params[:weight], @dog.multiplier, @dog.life_stage)
+    @dog.multiplier = get_multiplier(dog_params)
+    @dog.save
+    reqs = get_reqs(dog_params[:weight].to_f, @dog.multiplier, @dog.life_stage)
     @nutrition_req = NutritionReq.new(dog: @dog)
     reqs.each do |nutrient, amount|
       @nutrition_req[nutrient] = amount
     end
     if @nutrition_req.save
-      format.html { redirect_to new_recipe_path }
+      redirect_to new_recipe_path
     else
       format.html { render :new }
       format.json { render json: @dog.errors, status: :unprocessable_entity }
@@ -54,30 +47,17 @@ class DogsController < ApplicationController
   private
 
   def dog_params
-    params.require(:dog).permit(:user_id, :name, :photo, :weight, :activity_level, :size, :is_sterilized, :life_stage, :body_condition_score)
+    params.require(:dog).permit(:user_id, :name, :photo, :photo_cache, :weight, :activity_level, :size, :is_sterilized, :life_stage, :body_condition_score)
   end
 
   def get_multiplier(dog_params)
-    multipliers = {
-      activity_level: { low: 1.06, medium: 1.14, high: 1.31 },
-      size: { large: 1.00, medium: 1.13, small: 1.29 },
-      is_sterilized: { true: 1.16, false: 1.37 },
-      life_stage: { adult: 1.00, senior: 0.81, puppy: 2.45 },
-      body_condition_score: [1.43, 1.18, 1.00, 0.87, 0.77]
-      }
-    multipliers = {
-      activity_level: { "low" => 1.06, "medium" => 1.14, "high" => 1.31 },
-      size: { "large" => 1.00, "medium" => 1.13, "small" => 1.29 },
-      is_sterilized: { true => 1.16, false => 1.37 },
-      life_stage: { "adult" => 1.00, "senior" => 0.81, "puppy" => 2.45 },
-      body_condition_score: [1.43, 1.18, 1.00, 0.87, 0.77]
-      }
-    a_l_m = multipliers[:activity_level][dog_params[:activity_level]].to_f
-    s_m = multipliers[:size][dog_params[:size]].to_f
-    i_s_m = multipliers[:is_sterilized][dog_params[:is_sterilized]].to_f
-    l_s_m = multipliers[:life_stage][dog_params[:life_stage]].to_f
-    b_c_s_m = multipliers[:body_condition_score][dog_params[:body_condition_score].to_i - 1].to_f
-
+    multipliers = { "activity_level" => { "low" => 1.06, "medium" => 1.14, "high" => 1.31 }, "size" => { "large" => 1.00, "medium" => 1.13, "small" => 1.29 }, "is_sterilized" => { "true" => 1.16, "false" => 1.37 }, "life_stage" => { "adult" => 1.00, "senior" => 0.81, "puppy" => 2.45 }, "body_condition_score" => { "1" => 1.43, "2" => 1.18, "3" => 1.00, "4" => 0.87, "5" => 0.77} }
+    a_l_m = multipliers["activity_level"][dog_params["activity_level"]].to_f
+    s_m = multipliers["size"][dog_params["size"]].to_f
+    i_s_m = multipliers["is_sterilized"][dog_params["is_sterilized"]].to_f
+    l_s_m = multipliers["life_stage"][dog_params["life_stage"]].to_f
+    b_c_s_m = multipliers["body_condition_score"][dog_params["body_condition_score"]].to_f
+    total_multiplier = a_l_m * s_m * i_s_m * l_s_m * b_c_s_m
     return total_multiplier
   end
 
