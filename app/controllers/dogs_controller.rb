@@ -20,23 +20,21 @@ class DogsController < ApplicationController
       end
     end
     @dog.multipler = get_multiplier(dog_params)
-    if @dog.life_stage == "adult"
-      reqs = get_maintenance_reqs(params[:weight], @dog.multiplier)
-      @nutrition_req = NutritionReq.new(dog: @dog)
-      reqs.each do |nutrient, amount|
-        @nutrition_req[nutrient] = amount
-      end
-      if @nutrition_req.save
-        format.html { redirect_to new_recipe_path }
-      else
-        format.html { render :new }
-        format.json { render json: @dog.errors, status: :unprocessable_entity }
-      end
+    reqs = get_reqs(params[:weight], @dog.multiplier, @dog.life_stage)
+    @nutrition_req = NutritionReq.new(dog: @dog)
+    reqs.each do |nutrient, amount|
+      @nutrition_req[nutrient] = amount
+    end
+    if @nutrition_req.save
+      format.html { redirect_to new_recipe_path }
+    else
+      format.html { render :new }
+      format.json { render json: @dog.errors, status: :unprocessable_entity }
     end
   end
 
   def edit
-    @dog = Dog.find(params[:id]
+    @dog = Dog.find(params[:id])
   end
 
   def update
@@ -83,32 +81,57 @@ class DogsController < ApplicationController
     return total_multiplier
   end
 
-  def get_maintenance_reqs(weight, multiplier)
+  def get_reqs(weight, multiplier, life_stage)
     resting_energy_req = 70 * ((weight.to_f) ** 0.75)
     daily_energy_req = resting_energy_req * multiplier
     coeff = daily_energy_req / 1000
-    indiv_maintenance_req = {
-    energy_kcal: daily_energy_req,
-    protein_g: coeff * 45.0,
-    fat_g: coeff * 13.8,
-    fiber_g: 0,
-    calcium_mg: coeff * 1250,
-    iron_mg: coeff * 10,
-    magnesium_mg: coeff * 150,
-    phosphorus_mg: coeff * 1000,
-    potassium_mg: coeff * 1500,
-    sodium_mg: coeff * 200,
-    zinc_mg: coeff * 20,
-    thiamin_mg: coeff * 0.56,
-    riboflavin_mg: coeff * 1.3,
-    niacin_mg: coeff * 3.4,
-    pyridoxine_mg: coeff * 0.38,
-    folate_ug: coeff * 54,
-    vitamin_b12_ug: coeff * 7,
-    vitamin_a_iu: coeff * 1250,
-    vitamin_e_mg: coeff * 0.8 * 12.5,
-    vitamin_d_iu: coeff * 125
-    }
-    return indiv_maintenance_req
+    if life_stage == "puppy"
+      req = {
+      energy_kcal: daily_energy_req,
+      protein_g: coeff * 56.3,
+      fat_g: coeff * 21.3,
+      fiber_g: 0,
+      calcium_mg: coeff * 3000,
+      iron_mg: coeff * 22,
+      magnesium_mg: coeff * 100,
+      phosphorus_mg: coeff * 2500,
+      potassium_mg: coeff * 1500,
+      sodium_mg: coeff * 800,
+      zinc_mg: coeff * 25,
+      thiamin_mg: coeff * 0.56,
+      riboflavin_mg: coeff * 1.3,
+      niacin_mg: coeff * 3.4,
+      pyridoxine_mg: coeff * 0.38,
+      folate_ug: coeff * 54,
+      vitamin_b12_ug: coeff * 7,
+      vitamin_a_iu: coeff * 1250,
+      vitamin_e_mg: coeff * 0.8 * 12.5,
+      vitamin_d_iu: coeff * 125
+      }
+    else
+      req = {
+      energy_kcal: daily_energy_req,
+      protein_g: coeff * 45.0,
+      fat_g: coeff * 13.8,
+      fiber_g: 0,
+      calcium_mg: coeff * 1250,
+      iron_mg: coeff * 10,
+      magnesium_mg: coeff * 150,
+      phosphorus_mg: coeff * 1000,
+      potassium_mg: coeff * 1500,
+      sodium_mg: coeff * 200,
+      zinc_mg: coeff * 20,
+      thiamin_mg: coeff * 0.56,
+      riboflavin_mg: coeff * 1.3,
+      niacin_mg: coeff * 3.4,
+      pyridoxine_mg: coeff * 0.38,
+      folate_ug: coeff * 54,
+      vitamin_b12_ug: coeff * 7,
+      vitamin_a_iu: coeff * 1250,
+      vitamin_e_mg: coeff * 0.8 * 12.5,
+      vitamin_d_iu: coeff * 125
+      }
+    end
+    return req
   end
 end
