@@ -22,6 +22,10 @@ class DogsController < ApplicationController
       end
       if @nutrition_req.save
         format.html { redirect_to new_recipe_path }
+      else
+        format.html { render :new }
+        format.json { render json: @dog.errors, status: :unprocessable_entity }
+      end
     end
   end
 
