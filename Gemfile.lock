@@ -61,6 +61,7 @@ GEM
     cloudinary (1.8.1)
       aws_cf_signer
       rest-client
+    cocoon (1.2.10)
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
     devise (4.3.0)
@@ -246,6 +247,7 @@ DEPENDENCIES
   bootstrap-sass
   carrierwave (~> 0.11.2)
   cloudinary
+  cocoon
   devise
   figaro
   font-awesome-sass
