@@ -1,1 +1,12 @@
 <h1>Recipe Book</h1>
+
+<% @recipes.each do |recipe| %>
+<p><%= link_to recipe.name, recipe_path(recipe.id) %></p>
+<% end %>
+
+<h1>Favorites Placeholder</h1>
+
+
+<!-- How to link the name of each recipe to the recipe -->
+
+

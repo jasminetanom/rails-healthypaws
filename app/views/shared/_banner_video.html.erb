@@ -1,18 +1,22 @@
 <div class="banner-video">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
+
 
   <!--  Content  -->
-  <div class="vid-content">
-    <h1>Feed your furry friend what fits them best
-    <br />
-    <span>
-      <%= button_to 'Try our recipe builder', "#", class: "btn btn-primary" %>
-    </span></h1>
+
+  <div class="vid-container">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <h1>Feed your furry friend what fits them best</h1>
+    <%= button_to 'Try our recipe builder', "#", class: "btn btn-primary" %>
+
+    </div>
   </div>
+
   <!--  Video is muted & autoplays, placed after major DOM elements for performance & has an image fallback  -->
   <video autoplay loop id="video-background" muted plays-inline>
     <source src="https://res.cloudinary.com/tanjamiee/video/upload/v1503465708/cute_puppy_on_beach_ynck7y.mp4" type="video/mp4">
   </video>
+
+
 </div>
 
 

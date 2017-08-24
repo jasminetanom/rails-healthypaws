@@ -13,4 +13,5 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'pages#dashboard'
 
+  get '/recipe_book', to: 'pages#recipe_book'
 end
