@@ -3,12 +3,12 @@ class Dog < ApplicationRecord
   has_one :nutrition_req, dependent: :destroy
   has_many :recipes, dependent: :destroy
 
-  validates :user, :name, :weight, :activity_level, :is_sterilized, :life_stage, :body_condition_score, presence: true
+  validates :user, :name, :weight, :activity_level, :life_stage, :body_condition_score, presence: true
   validates :name, format: { with: /\A[a-zA-Z]+\z/,
     message: "only allows letters" }, length: { minimum: 2, maximum: 20, too_long: "20 characters is the maximum allowed" }
   validates :body_condition_score, numericality: { only_integer: true, greater_than: 0, less_than: 6 }
 
-  before_save :set_multiplier
+  before_save :assign_multiplier
 
   mount_uploader :photo, PhotoUploader
 
@@ -36,9 +36,8 @@ class Dog < ApplicationRecord
 
   private
 
-  def set_multiplier
-    self.multiplier = self.calculate_multiplier
-    self.save
+  def assign_multiplier
+    self.multiplier = calculate_multiplier
   end
 
   def calculate_multiplier
@@ -46,7 +45,7 @@ class Dog < ApplicationRecord
     s_m = MULTIPLIERS["size"][self.size]
     i_s_m = MULTIPLIERS["is_sterilized"][self.is_sterilized.to_s]
     l_s_m = MULTIPLIERS["life_stage"][self.life_stage]
-    b_c_s_m = MULTIPLIERS["body_condition_score"][self.body_condition_score]
+    b_c_s_m = MULTIPLIERS["body_condition_score"][self.body_condition_score.to_s]
 
     return a_l_m * s_m * i_s_m * l_s_m * b_c_s_m
   end
