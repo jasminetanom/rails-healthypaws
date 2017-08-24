@@ -12,7 +12,6 @@ class User < ApplicationRecord
 
   has_one :dog, dependent: :destroy
 
-
   validates :first_name, :last_name, presence:true, unless: :from_omniauth?
 
   # validates_presence_of :photo
