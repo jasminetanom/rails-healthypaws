@@ -60,6 +60,8 @@ class ApplicationController < ActionController::Base
 
   # reload guest_user to prevent caching problems before destruction
   def destroy_guest_user
+
+
     guest_user(with_retry = false).try(:reload).try(:destroy)
     session[:guest_user_id] = nil
   end
