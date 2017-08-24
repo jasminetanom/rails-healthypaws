@@ -1,13 +1,13 @@
 <%= simple_form_for @recipe do |f| %>
   <%= f.input :name %>
   <%= f.hidden_field :dog_id, value: @user.dog.id %>
-  <h3> Doses </h3>
+  <h3> Ingredients </h3>
   <div id="doses">
     <%= f.simple_fields_for :doses do |dose| %>
       <%= render 'dose_fields', f: dose %>
     <% end %>
     <div class="links">
-      <%= link_to_add_association 'Add ingredient', f, :doses %>
+      <%= link_to_add_association 'Select another ingredient', f, :doses %>
     </div>
   </div>
   <%= f.submit %>
