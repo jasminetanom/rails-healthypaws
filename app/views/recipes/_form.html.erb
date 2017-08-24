@@ -1,5 +1,6 @@
 <%= simple_form_for @recipe do |f| %>
   <%= f.input :name %>
+  <%= f.hidden_field :dog_id, value: @user.dog.id %>
   <h3> Doses </h3>
   <div id="doses">
     <%= f.simple_fields_for :doses do |dose| %>
