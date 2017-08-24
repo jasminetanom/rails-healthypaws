@@ -8,6 +8,7 @@
   background-size: cover !important;
   display: flex;
   font-family: 'Montserrat', sans-serif;
+  height: 90vh;
 
 
 }
@@ -23,29 +24,12 @@
   height: 100%;
 }
 
-/* These just style the content */
-.vid-content {
-/*  just a fancy border  */
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.banner-video h1 {
-  position: absolute;
-  top: 60%;
-  width: 100%;
+.vid-content h1 {
+  position: fixed;
   font-size: 36px;
   letter-spacing: 3px;
   color: #fff;
   text-align: center;
 }
 
-.banner-video h1 span {
-  letter-spacing: 0;
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 24px;
-}
+
