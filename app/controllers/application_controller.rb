@@ -53,9 +53,12 @@ class ApplicationController < ActionController::Base
   # called (once) when the user logs in, insert any code your application needs
   # to hand off from guest_user to current_user.
   def transfer_dog
+    if guest_user.dog.present?
       guest_dog = guest_user.dog
+      current_user.dog.destroy if current_user.dog.present?
       guest_dog.user_id = current_user.id
       guest_dog.save!
+    end
   end
 
   # reload guest_user to prevent caching problems before destruction
