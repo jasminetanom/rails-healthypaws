@@ -1,31 +1,23 @@
 class DogsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:new, :create]
 
-  def new
-    @dog = Dog.new
-  end
 
   def create
     @dog = Dog.new(dog_params)
-    puts "dogs before save"
     if @dog.save
-      puts "dogs save"
       reqs = get_reqs(@dog.weight, @dog.multiplier, @dog.life_stage)
-
       @nutrition_req = NutritionReq.new(dog: @dog)
       reqs.each do |nutrient, amount|
         @nutrition_req[nutrient] = amount
       end
-
       if @nutrition_req.save
         redirect_to new_recipe_path
       else
-        format.html { render :new }
+        format.html { render 'pages/home' }
         format.json { render json: @dog.errors, status: :unprocessable_entity }
       end
     else
-      puts "@dog #{@dog.errors.inspect}"
-      render :new
+      render 'pages/home'
     end
   end
 

@@ -13,6 +13,7 @@ class RecipesController < ApplicationController
     @user = current_or_guest_user
     @recipe = Recipe.new(dog: @user.dog)
     @nutrition_req = @user.dog.nutrition_req
+    @nutrients = %w(energy_kcal protein_g fat_g fiber_g calcium_mg iron_mg magnesium_mg phosphorus_mg potassium_mg sodium_mg zinc_mg thiamin_mg riboflavin_mg niacin_mg pyridoxine_mg folate_ug vitamin_b12_ug vitamin_a_iu vitamin_e_mg vitamin_d_iu)
   end
 
   def create
@@ -20,7 +21,7 @@ class RecipesController < ApplicationController
     @nutrition_req = @user.dog.nutrition_req
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
-      redirect_to dashboard_path, notice: 'Recipe created'
+      redirect_to recipe_path(@recipe), notice: 'Recipe created'
     else
       render :new
     end
