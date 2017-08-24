@@ -1,3 +1,4 @@
+
 <% @nutrients.each do |nutrient| %>
   <p><%= nutrient.split('_')[0...-1].join(' ').titlecase %>: <%= @nutrition_req[nutrient] %> <%= nutrient.split('_')[-1].downcase %></p>
 <% end %>
