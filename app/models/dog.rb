@@ -10,7 +10,7 @@ class Dog < ApplicationRecord
 
   before_save :assign_multiplier
 
-  mount_uploader :photo, PhotoUploader
+  # mount_uploader :photo, PhotoUploader
 
   scope :activity_level, -> (activity_level) { where activity_level: activity_level }
   scope :is_sterilized, -> (is_sterilized) { where is_sterilized: is_sterilized }
