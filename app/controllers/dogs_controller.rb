@@ -7,7 +7,9 @@ class DogsController < ApplicationController
 
   def create
     @dog = Dog.new(dog_params)
+    puts "dogs before save"
     if @dog.save
+      puts "dogs save"
       reqs = get_reqs(@dog.weight, @dog.multiplier, @dog.life_stage)
 
       @nutrition_req = NutritionReq.new(dog: @dog)
@@ -22,6 +24,7 @@ class DogsController < ApplicationController
         format.json { render json: @dog.errors, status: :unprocessable_entity }
       end
     else
+      puts "@dog #{@dog.errors.inspect}"
       render :new
     end
   end
