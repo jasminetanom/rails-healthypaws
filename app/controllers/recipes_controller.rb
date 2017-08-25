@@ -5,7 +5,8 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!, if: :has_recipe?, only: :show
 
   def index
-    @recipes = Recipe.all
+      @user = current_user
+      @recipes = Recipe.all
   end
 
   def show
