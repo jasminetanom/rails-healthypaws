@@ -25,12 +25,15 @@
   bottom: 0;
 }
 
-.banner-video h1 {
+.banner-video .vid-content__overlay {
   z-index: 103;
   position: absolute;
-  top: 60%;
+  top: 50%;
   width: 100%;
-  font-size: 50px;
+}
+
+.banner-video h1 {
+  font-size: 36px;
   color: #FCFAF0;
   text-align: center;
   font-family: Montserrat, sans-serif;

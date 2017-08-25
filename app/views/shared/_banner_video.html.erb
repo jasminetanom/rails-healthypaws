@@ -2,14 +2,19 @@
 
 <div class="banner-video">
   <div class="vid-content">
-    <h1>Feed your furry friend what fits them best
-      <br>
-      <br>
-      <span>
-        <%= button_to 'Try our recipe builder', "#", class: "btn" %>
-        <%= button_to 'Browse our recipes', "#", class: "btn" %>
-      </span>
-    </h1>
+
+    <div class="vid-content__overlay">
+      <h1>Feed your furry friend what fits them best</h1>
+
+      <div class="row">
+        <div class="col-md-6 text-right">
+          <%= button_to 'Try our recipe builder', "#", class: "btn" %>
+        </div>
+        <div class="col-md-6">
+          <%= button_to 'Browse our recipes', "#", class: "btn" %>
+        </div>
+      </div>
+    </div>
   </div>
 
   <video autoplay loop id="video-background" muted plays-inline>
