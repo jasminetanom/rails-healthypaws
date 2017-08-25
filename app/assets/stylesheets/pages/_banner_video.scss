@@ -16,7 +16,7 @@
 /* The only rule that matters */
 #video-background {
 /*  making the video fullscreen  */
-  z-index: 102;
+  z-index: 1;
   margin-left: 0px;
   margin-top: 0px;
   margin-bottom: -10px;
@@ -24,8 +24,8 @@
   height: 100%;
 }
 
-.vid-content h1 {
-  position: fixed;
+.vid-container h1 {
+  position: absolute;
   font-size: 36px;
   letter-spacing: 3px;
   color: #fff;
