@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def home
     if user_signed_in?
-      redirect_to new_recipe_path
+      redirect_to :recipe_book
     end
     @user = current_or_guest_user
     @dog = Dog.new(user: @user)

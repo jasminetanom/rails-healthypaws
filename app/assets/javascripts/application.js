@@ -40,19 +40,13 @@ $(document).ready(function() {
   $(document).on('click', '#check_recipe', function(event) {
     var ids = [];
     $('.ingredient_name').each(function(i, item) {
-
-
       ids.push($(item).val());
-
     });
-
 
 
     var amounts = [];
     $('.ingredient_amount').each(function(i, item) {
       amounts.push($(item).val());
-
-
     });
 
 
@@ -68,12 +62,10 @@ $(document).ready(function() {
     }
 
     Object.keys(totalNutrients).forEach(function(nutrient) {
-      $('#' + nutrient).html(totalNutrients[nutrient].toString());
+      $('#' + nutrient).html(Math.round(totalNutrients[nutrient]/$('#' + nutrient + '_val').html()*100));
+      console.log($('#' + nutrient + '_val').html())
     });
   });
-
-
-
 });
 
 
