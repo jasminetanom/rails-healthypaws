@@ -1,0 +1,27 @@
+<h1>Recipes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Recipe</th>
+      <th>By</th>
+      <th>Calories</th>
+      <th>Protein</th>
+      <th>Fat</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @recipes.each do |recipe| %>
+      <tr>
+        <td><%= recipe.name %></td>
+        <td><%= recipe.dog.user %></td>
+        <td><%=  %></td>
+        <td><%= link_to 'Show', dose %></td>
+        <td><%= link_to 'Edit', edit_dose_path(dose) %></td>
+        <td><%= link_to 'Destroy', dose, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
