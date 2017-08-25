@@ -1,8 +1,19 @@
-<% @nutrients.each do |nutrient| %>
-  <h5><%= nutrient.split('_')[0...-1].join(' ').titlecase %>:
-  <span id=<%= nutrient %>>0</span><span hidden="hidden" id=<%= nutrient + "_val" %>><%= @nutrition_req[nutrient] %></span>%</h5>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <% @nutrients.each do |nutrient| %>
+        <h5><%= nutrient.split('_')[0...-1].join(' ').titlecase %>:
+        <span id=<%= nutrient %>>0</span><span hidden="hidden" id=<%= nutrient + "_val" %>><%= @nutrition_req[nutrient] %></span>%</h5>
+      <% end %>
+    </div>
+    <div class="col-sm-6">
+      <%= render "form" %>
+    </div>
+  </div>
+</div>
 
-<%= render "form" %>
+
+
+
 
 
