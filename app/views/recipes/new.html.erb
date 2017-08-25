@@ -1,6 +1,8 @@
 <% @nutrients.each do |nutrient| %>
-  <p><%= nutrient.split('_')[0...-1].join(' ').titlecase %>: <%= @nutrition_req[nutrient] %> <%= nutrient.split('_')[-1].downcase %></p>
+  <h5><%= nutrient.split('_')[0...-1].join(' ').titlecase %>:
+  <span id=<%= nutrient %>>0</span>/<%= @nutrition_req[nutrient].to_i %> <%= nutrient.split('_')[-1].downcase %></h5>
 <% end %>
 
 <%= render "form" %>
+
 

@@ -2,6 +2,7 @@
   <%= f.input :name %>
   <%= f.hidden_field :dog_id, value: @user.dog.id %>
   <h3> Ingredients </h3>
+  <%= button_tag "Check nutritional status of recipe", :type => 'button', :id => "check_recipe" %>
   <div id="doses">
     <%= f.simple_fields_for :doses do |dose| %>
       <%= render 'dose_fields', f: dose %>
