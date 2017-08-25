@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
   def transfer_dog
     if guest_user.dog.present?
       guest_dog = guest_user.dog
-      current_user.dog.destroy if current_user.dog.present?
+      # current_user.dog.destroy if current_user.dog.present?
       guest_dog.user_id = current_user.id
       guest_dog.save!
     end
