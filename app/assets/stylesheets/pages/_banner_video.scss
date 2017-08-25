@@ -1,22 +1,15 @@
-// Specific CSS for your home-page
 .banner-video body {
   margin: 0;
   padding: 0;
-/*  Background fallback in case of IE8 & down, or in case video doens't load, such as with slower connections  */
   background: #333;
   background-attachment: fixed;
   background-size: cover !important;
   display: flex;
-  font-family: 'Montserrat', sans-serif;
-  height: 90vh;
-
-
+  font-family: Montserrat, sans-serif;
 }
 
-/* The only rule that matters */
 #video-background {
-/*  making the video fullscreen  */
-  z-index: 1;
+  z-index: 102;
   margin-left: 0px;
   margin-top: 0px;
   margin-bottom: -10px;
@@ -24,12 +17,28 @@
   height: 100%;
 }
 
-.vid-container h1 {
+.vid-content {
   position: absolute;
-  font-size: 36px;
-  letter-spacing: 3px;
-  color: #fff;
-  text-align: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
+.banner-video h1 {
+  z-index: 103;
+  position: absolute;
+  top: 60%;
+  width: 100%;
+  font-size: 50px;
+  color: #FCFAF0;
+  text-align: center;
+  font-family: Montserrat, sans-serif;
+}
 
+.banner-video h1 span {
+  letter-spacing: 0;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+}
