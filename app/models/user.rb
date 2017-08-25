@@ -11,6 +11,7 @@ class User < ApplicationRecord
   mount_uploader :photo, PhotoUploader
 
   has_one :dog, dependent: :destroy
+  has_many :recipes, through: :dog
 
   validates :first_name, :last_name, presence:true, unless: :from_omniauth?
 

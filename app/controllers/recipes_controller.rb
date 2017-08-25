@@ -5,7 +5,9 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!, if: :has_recipe?, only: :show
 
   def index
-    @recipes = Recipe.all
+      @user = current_user
+      non_guest_users = User.where.not(first_name: 'guest', last_name: 'guest').includes(:recipes)
+      @recipes = non_guest_users.map(&:recipes).flatten
   end
 
   def show
