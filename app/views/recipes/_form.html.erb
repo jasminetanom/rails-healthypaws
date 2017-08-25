@@ -1,5 +1,5 @@
 <%= simple_form_for @recipe do |f| %>
-  <%= f.input :name %>
+  <%= f.input :name, label: 'Recipe Name' %>
   <%= f.hidden_field :dog_id, value: @user.dog.id %>
 
   <%= button_tag "Check nutritional status of recipe", :type => 'button', :id => "check_recipe", class: 'btn btn-primary' %>
