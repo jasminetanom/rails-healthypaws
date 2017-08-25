@@ -1,15 +1,18 @@
 <%= simple_form_for @recipe do |f| %>
   <%= f.input :name %>
   <%= f.hidden_field :dog_id, value: @user.dog.id %>
-  <h3> Ingredients </h3>
-  <%= button_tag "Check nutritional status of recipe", :type => 'button', :id => "check_recipe" %>
+
+  <%= button_tag "Check nutritional status of recipe", :type => 'button', :id => "check_recipe", class: 'btn btn-primary' %>
+
+  <h4> Ingredients </h4>
+
   <div id="doses">
     <%= f.simple_fields_for :doses do |dose| %>
       <%= render 'dose_fields', f: dose %>
     <% end %>
     <div class="links">
-      <%= link_to_add_association 'Select another ingredient', f, :doses %>
+      <%= link_to_add_association 'Add Ingredient', f, :doses, class: 'btn btn-secondary' %>
     </div>
   </div>
-  <%= f.submit %>
+  <%= f.submit class: 'btn btn-primary' %>
 <% end %>
