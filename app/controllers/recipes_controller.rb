@@ -6,7 +6,8 @@ class RecipesController < ApplicationController
 
   def index
       @user = current_user
-      @recipes = Recipe.all
+      non_guest_users = User.where.not(first_name: 'guest', last_name: 'guest').includes(:recipes)
+      @recipes = non_guest_users.map(&:recipes).flatten
   end
 
   def show
