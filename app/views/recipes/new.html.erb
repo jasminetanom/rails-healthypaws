@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-5 col-sm-offset-1">
-      <h3>Nutritional Requirements</h3>
+      <h3>Your Recipe's Nutritional Breakdown</h3>
       <% @nutrients.each do |nutrient| %>
         <h5><%= nutrient.split('_')[0...-1].join(' ').titlecase %>:
         <span id=<%= nutrient %>>0</span><span hidden="hidden" id=<%= nutrient + "_val" %>><%= @nutrition_req[nutrient] %></span>%</h5>
