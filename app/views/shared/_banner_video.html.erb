@@ -5,13 +5,14 @@
 
     <div class="vid-content__overlay">
       <h1>Feed your furry friend what fits them best</h1>
+      <p>Create complete and balanced recipes customized to your dog's nutritional needs</p>
 
       <div class="row">
         <div class="col-xs-12 text-center col-sm-3 col-sm-offset-3 btn-cta" >
-          <%= button_to 'Try our recipe builder', "#", class: "btn" %>
+          <%= button_tag "Try building a recipe", :type => 'button', :id => "to-recipe-builder", class: 'btn' %>
         </div>
         <div class="col-xs-12 text-center col-sm-3 btn-cta">
-          <%= button_to 'Browse our recipes', "#", class: "btn" %>
+          <%= button_tag "Browse recipes", :type => 'button', :id => "to-browse", class: 'btn' %>
         </div>
       </div>
     </div>
