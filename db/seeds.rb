@@ -1,3 +1,5 @@
+ingredients.delete_all
+
 ingredients = [
   {name:'Chicken breast, skinless, boneless',energy_kcal:1.51, protein_g:0.3054,fat_g:0.0317,fiber_g:0,calcium_mg:0.05,iron_mg:0.0045,magnesium_mg:0.34,phosphorus_mg:2.58,potassium_mg:3.91,sodium_mg:0.52,zinc_mg:0.009,niacin_mg:0.12133,pyridoxine_mg:0.01157,folate_ug:0,vitamin_b12_ug:0.0021,vitamin_a_iu:0.1,vitamin_e_mg:0.0054,vitamin_d_iu:0.01,riboflavin_mg:0.00213,thiamin_mg:0.00107},
   {name:'Cheese, Cheddar',energy_kcal:4.04,protein_g:0.2287,fat_g:0.3331,fiber_g:0,calcium_mg:7.1,iron_mg:0.0014,magnesium_mg:0.27,phosphorus_mg:4.55,potassium_mg:0.76,sodium_mg:6.53,zinc_mg:0.0364,niacin_mg:0.00059,pyridoxine_mg:0.00066,folate_ug:0.27,vitamin_b12_ug:0.011,vitamin_a_iu:12.42,vitamin_e_mg:0.0071,vitamin_d_iu:0.24,riboflavin_mg:0.00428,thiamin_mg:0.00029},
