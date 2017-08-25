@@ -1,7 +1,7 @@
 module DogHelper
   def all_sizes
     [
-      ["Toy breed (e.g. Miniature Schnauzer)", 'small'],
+      ["Small/Toy breed (e.g. Miniature Schnauzer)", 'small'],
       ["Medium breed (e.g. Standard Schnauzer)", "medium"],
       ["Large breed (e.g. Giant Schnauzer)", "large"]
     ]
@@ -9,17 +9,17 @@ module DogHelper
 
   def all_life_stages
     [
-      ["Puppy (Age < 1)", "puppy"],
-      ["Adult Dog (1 < Age < 7)", "adult"],
-      ["Senior Dog (Age > 7)", "senior"]
+      ["Puppy (Age < 1 year)", "puppy"],
+      ["Adult Dog (Age: 1 - 7 years)", "adult"],
+      ["Senior Dog (Age > 7 years)", "senior"]
     ]
   end
 
   def all_activity_levels
     [
-      ["Low (Outdoor exercise <1 hour)", "low"],
-      ["Medium (Outdoor exercise 1 < hours < 3)", "medium"],
-      ["high (Outdoor exercise >3 hours)", "high"]
+      ["Low (Outdoor exercise < 1 hour)", "low"],
+      ["Medium (Outdoor exercise: 1 - 3 hours)", "medium"],
+      ["High (Outdoor exercise > 3 hours)", "high"]
     ]
   end
 
