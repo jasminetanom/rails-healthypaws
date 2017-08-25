@@ -11,4 +11,9 @@ class PagesController < ApplicationController
 
   def dashboard
   end
+
+  def recipe_book
+    @user = current_user
+    @recipes = @user.dog.recipes
+  end
 end

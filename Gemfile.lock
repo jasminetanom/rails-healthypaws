@@ -136,6 +136,7 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
+    paloma (5.1.0)
     paper_trail (7.1.1)
       activerecord (>= 4.0, < 5.2)
       request_store (~> 1.1)
@@ -256,6 +257,7 @@ DEPENDENCIES
   letter_opener
   listen (~> 3.0.5)
   omniauth-facebook
+  paloma (~> 5.1.0)
   paper_trail
   pg
   pry-byebug
