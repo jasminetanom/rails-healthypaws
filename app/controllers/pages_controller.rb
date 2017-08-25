@@ -14,6 +14,10 @@ class PagesController < ApplicationController
 
   def recipe_book
     @user = current_user
-    @recipes = @user.dog.recipes
+    if @user.dog.present?
+      @recipes = @user.dog.recipes
+    else
+      @recipes = []
+    end
   end
 end
