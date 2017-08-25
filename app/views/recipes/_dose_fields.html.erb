@@ -1,6 +1,5 @@
 <div class="nested-fields">
-  <%= f.association :ingredient %>
-  <%= f.input :amount %>
-  <%= button_tag "Add Ingredient", :type => 'button', :id => "add_ingredient" %>
+  <%= f.input :ingredient_id, collection: Ingredient.all, input_html: { class: 'ingredient_name' } %>
+  <%= f.input :amount, input_html: { class: 'ingredient_amount' }  %>
   <%= link_to_remove_association "Remove this ingredient", f %>
 </div>
