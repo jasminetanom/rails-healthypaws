@@ -1,6 +1,6 @@
 <h1>Recipes</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Recipe</th>
@@ -15,12 +15,17 @@
   <tbody>
     <% @recipes.each do |recipe| %>
       <tr>
-        <td><%= recipe.name %></td>
-        <td><%= recipe.dog.user %></td>
-        <td><%=  %></td>
-        <td><%= link_to 'Show', dose %></td>
-        <td><%= link_to 'Edit', edit_dose_path(dose) %></td>
-        <td><%= link_to 'Destroy', dose, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to recipe.name, recipe_path(recipe) %></td>
+        <td><%= recipe.dog.user.first_name %></td>
+        <% if RecipeNutritionInfo.find_by(recipe_id: recipe.id).nil? %>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        <% else %>
+          <td><%= RecipeNutritionInfo.find_by(recipe_id: recipe.id)["energy_kcal"] %></td>
+          <td><%= RecipeNutritionInfo.find_by(recipe_id: recipe.id)["protein_g"]%></td>
+          <td><%= RecipeNutritionInfo.find_by(recipe_id: recipe.id)["fat_g"]%></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -10,6 +10,8 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @nutrients = %w(energy_kcal protein_g fat_g fiber_g calcium_mg iron_mg magnesium_mg phosphorus_mg potassium_mg sodium_mg zinc_mg thiamin_mg riboflavin_mg niacin_mg pyridoxine_mg folate_ug vitamin_b12_ug vitamin_a_iu vitamin_e_mg vitamin_d_iu)
+    @recipe_nutrition_info = RecipeNutritionInfo.find_by(recipe_id: @recipe.id)
   end
 
   def new
@@ -29,7 +31,21 @@ class RecipesController < ApplicationController
     @nutrients = %w(energy_kcal protein_g fat_g fiber_g calcium_mg iron_mg magnesium_mg phosphorus_mg potassium_mg sodium_mg zinc_mg thiamin_mg riboflavin_mg niacin_mg pyridoxine_mg folate_ug vitamin_b12_ug vitamin_a_iu vitamin_e_mg vitamin_d_iu)
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
-      redirect_to recipe_path(@recipe), notice: 'Congrats! You\'ve successfully created a recipe.'
+      @recipe_nutrition_info = RecipeNutritionInfo.new(recipe_id: @recipe.id)
+      if @recipe.doses.any?
+        @recipe.doses.each do |dose|
+          amount = dose["amount"]
+          ingredient = Ingredient.find(dose["ingredient_id"].to_i)
+          @nutrients.each do |nutrient|
+            @recipe_nutrition_info[nutrient] += (ingredient[nutrient] * amount)
+          end
+        end
+      end
+      if @recipe_nutrition_info.save
+        redirect_to recipe_path(@recipe), notice: 'Congrats! You\'ve successfully created a recipe.'
+      else
+        render :new
+      end
     else
       render :new
     end

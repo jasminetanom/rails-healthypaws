@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170825025257) do
+ActiveRecord::Schema.define(version: 20170825063315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,33 @@ ActiveRecord::Schema.define(version: 20170825025257) do
     t.index ["dog_id"], name: "index_nutrition_reqs_on_dog_id"
   end
 
+  create_table "recipe_nutrition_infos", force: :cascade do |t|
+    t.bigint "recipe_id"
+    t.float "energy_kcal", default: 0.0
+    t.float "protein_g", default: 0.0
+    t.float "fat_g", default: 0.0
+    t.float "fiber_g", default: 0.0
+    t.float "calcium_mg", default: 0.0
+    t.float "iron_mg", default: 0.0
+    t.float "magnesium_mg", default: 0.0
+    t.float "phosphorus_mg", default: 0.0
+    t.float "potassium_mg", default: 0.0
+    t.float "sodium_mg", default: 0.0
+    t.float "zinc_mg", default: 0.0
+    t.float "thiamin_mg", default: 0.0
+    t.float "riboflavin_mg", default: 0.0
+    t.float "niacin_mg", default: 0.0
+    t.float "pyridoxine_mg", default: 0.0
+    t.float "folate_ug", default: 0.0
+    t.float "vitamin_b12_ug", default: 0.0
+    t.float "vitamin_a_iu", default: 0.0
+    t.float "vitamin_e_mg", default: 0.0
+    t.float "vitamin_d_iu", default: 0.0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_recipe_nutrition_infos_on_recipe_id"
+  end
+
   create_table "recipes", force: :cascade do |t|
     t.string "name"
     t.bigint "dog_id"
@@ -150,5 +177,6 @@ ActiveRecord::Schema.define(version: 20170825025257) do
   add_foreign_key "doses", "ingredients"
   add_foreign_key "doses", "recipes"
   add_foreign_key "nutrition_reqs", "dogs", on_delete: :cascade
-  add_foreign_key "recipes", "dogs"
+  add_foreign_key "recipe_nutrition_infos", "recipes", on_delete: :cascade
+  add_foreign_key "recipes", "dogs", on_delete: :cascade
 end

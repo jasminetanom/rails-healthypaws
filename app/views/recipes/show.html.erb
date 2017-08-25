@@ -1,10 +1,17 @@
 <h3>Recipe for <%= @recipe.name %></h3>
+<h4>Ingredients</h4>
 <ul>
   <% @recipe.doses.each do |dose| %>
     <li><h5><%= dose.ingredient.name %> <%= dose.amount %></h5></li>
   <% end %>
 </ul>
-
+<h4>Nutrition Information</h4>
+<% @nutrients.each do |nutrient| %>
+  <h5><%= nutrient.split('_')[0...-1].join(' ').titlecase %>:
+  <%= '%.1f' % @recipe_nutrition_info[nutrient] %>
+  <%= nutrient.split('_')[-1] %>
+  </h5>
+<% end %>
 
 
 <h6><%= link_to "Back to Recipe Book", recipe_book_path %></h6>
