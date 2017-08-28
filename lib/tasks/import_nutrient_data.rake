@@ -101,6 +101,7 @@ INGREDIENTS_MAP = [
 INGREDIENT_NAMES = INGREDIENTS_MAP.map { |ingredient_item| ingredient_item[:name] }
 
 def parse_csv_file(path)
+  puts "path #{path}"
   content_lines = CSV.read(path, :encoding => 'windows-1251:utf-8')
   # drop all header lines
   content_lines = content_lines.drop(3)
@@ -133,6 +134,7 @@ end
 def format_hash_key(nutrient_name, unit)
   ingredient_item = INGREDIENTS_MAP.find { |ingredient_item| ingredient_item[:name] == nutrient_name }
   unit = 'ug' if unit == 'µg'
+  unit = 'iu' if unit == 'IU'
 
   [ingredient_item[:column_prefix], unit].join('_').to_sym
 end
