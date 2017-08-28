@@ -1,5 +1,7 @@
 {
   "name": "rails-healthypaws",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "smooth-scroll": "^12.1.4"
+  }
 }
