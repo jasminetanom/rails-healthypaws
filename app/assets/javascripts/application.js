@@ -85,6 +85,34 @@ $(function(){
 });
 
 
+$('.favorite-star').click(function() {
+  if ($('span').hasClass("fa-star")) {
+      $('.favorite-star').removeClass('active')
+    setTimeout(function() {
+      $('.favorite-star').removeClass('active-2')
+    }, 30)
+      $('.favorite-star').removeClass('active-3')
+    setTimeout(function() {
+      $('span').removeClass('fa-star')
+      $('span').addClass('fa-star-o')
+    }, 15)
+  } else {
+    $('.favorite-star').addClass('active')
+    $('.favorite-star').addClass('active-2')
+    setTimeout(function() {
+      $('span').addClass('fa-star')
+      $('span').removeClass('fa-star-o')
+    }, 150)
+    setTimeout(function() {
+      $('.favorite-star').addClass('active-3')
+    }, 150)
+    $('.favorite-msg').addClass('favorite-msg-tog')
+    setTimeout(function(){
+      $('.favorite-msg').removeClass('favorite-msg-tog')
+    },1000)
+  }
+})
+
 
 
 

@@ -9,5 +9,62 @@
   text-align: center;
 }
 
+.favorite-star {
+  font-size: 33px;
+  color: rgba(0,0,0,.5);
+  width: 38px;
+  height: 38px;
+  margin: 0 auto;
+  margin-top: 20px;
+  position: relative;
+  cursor: pointer;
+}
 
+body {
+  padding-top: 20px;
+}
+
+.favorite-star span {
+  margin-left: 4px;
+  margin-top: 3px;
+  z-index: 999;
+  position: absolute;
+}
+
+span:hover {
+  opacity: 0.8;
+}
+
+span:active {
+  transform: scale(0.93,0.93) translateY(2px)
+}
+
+.active span, .active-2 span {
+  color: #F5CC27 !important;
+}
+
+.favorite-msg {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: grey;
+  position: relative;
+  top: 30px;
+  left: -46px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.favorite-msg-tog {
+  color: #F5CC27;
+  position: relative;
+  top: 45px;
+  opacity: 1;
+}
+
+* {
+  transition: all .32s ease;
+}
 
