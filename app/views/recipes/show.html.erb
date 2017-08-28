@@ -13,8 +13,15 @@
     </h6> -->
   </div>
 
-  <h3>Recipe for <%= @recipe.name %></h3>
+  <div>
+    <h3>Recipe for <%= @recipe.name %> </h3>
+    <div class="favorite-star <%= 'active' if @is_recipe_favorited %>" data-recipe-id="<%= @recipe.id %>">
+      <span class="fa fa-star<%= '-o' unless @is_recipe_favorited %>"></span>
+      <p class="favorite-msg">Added to favorite recipes!</p>
+    </div>
+  </div>
 
+  <hr>
 
   <div class="row">
     <div class="col-sm-6">

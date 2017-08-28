@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170828085255) do
+
+ActiveRecord::Schema.define(version: 20170828093809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +41,14 @@ ActiveRecord::Schema.define(version: 20170828085255) do
     t.datetime "updated_at", null: false
     t.index ["ingredient_id"], name: "index_doses_on_ingredient_id"
     t.index ["recipe_id"], name: "index_doses_on_recipe_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "recipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "recipe_id"], name: "index_favorites_on_user_id_and_recipe_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -177,6 +186,8 @@ ActiveRecord::Schema.define(version: 20170828085255) do
   add_foreign_key "dogs", "users", on_delete: :cascade
   add_foreign_key "doses", "ingredients"
   add_foreign_key "doses", "recipes"
+  add_foreign_key "favorites", "recipes", on_delete: :cascade
+  add_foreign_key "favorites", "users", on_delete: :cascade
   add_foreign_key "nutrition_reqs", "dogs", on_delete: :cascade
   add_foreign_key "recipe_nutrition_infos", "recipes", on_delete: :cascade
   add_foreign_key "recipes", "dogs", on_delete: :cascade
