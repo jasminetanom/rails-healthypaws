@@ -11,3 +11,51 @@ ingredients = [
 ingredients.each do |ingredient|
   Ingredient.create(ingredient)
 end
+
+
+# Test data
+judith = User.new(first_name: "Judith", last_name: "H", email: "judithyhh@gmail.com", password: "1234567", password_confirmation: "1234567")
+jessica = User.new(first_name: "Jessica", last_name: "H", email: "hsiang.jessica@gmail.com", password: "1234567", password_confirmation: "1234567" )
+
+
+lucky = Dog.new(name: "Lucky", weight: 6, activity_level: "low", size: "medium", is_sterilized: "true", life_stage: "adult", body_condition_score: "3", user_id: 1)
+super_luck = Dog.new(name: "SuperLucky", weight: 5.8, activity_level: "low", size: "medium", is_sterilized: "false", life_stage: "adult", body_condition_score: "3", user_id: 2)
+
+
+# Recipe 1
+lucky_recipe_1 = Recipe.new(name: "Awesome beans", dog_id: 1)
+# Recipe 3
+lucky_recipe_2 = Recipe.new(name: "2nd Awesome beans", dog_id: 1)
+
+# Recipe 2
+super_lucky_recipe_1 = Recipe.new(name: "Awesome meal", dog_id: 2)
+# Recipe 4
+super_lucky_recipe_2 = Recipe.new(name: "2nd Awesome meal", dog_id: 2)
+
+# Recipe 1
+recipe_1_dose = Dose.new(recipe_id: 1, ingredient_id: 6, amount: 5)
+recipe_1_dose_2 = Dose.new(recipe_id: 1, ingredient_id: 7, amount: 10)
+
+# Recipe 2
+recipe_2_dose_1 = Dose.new(recipe_id: 2, ingredient_id: 8, amount: 20)
+recipe_2_dose_2 = Dose.new(recipe_id: 2, ingredient_id: 9, amount: 20)
+
+# Recipe 3
+recipe_3_dose_1 = Dose.new(recipe_id: 3, ingredient_id: 7, amount: 10)
+recipe_3_dose_2 = Dose.new(recipe_id: 3, ingredient_id: 9, amount: 8)
+
+# Recipe 4
+recipe_4_dose_1 = Dose.new(recipe_id: 4, ingredient_id: 8, amount: 9)
+recipe_4_dose_2 = Dose.new(recipe_id: 4, ingredient_id: 6, amount: 10)
+
+
+
+
+
+
+
+
+
+
+
+
