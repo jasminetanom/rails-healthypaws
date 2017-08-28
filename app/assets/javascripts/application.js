@@ -62,12 +62,27 @@ $(document).ready(function() {
     }
 
     Object.keys(totalNutrients).forEach(function(nutrient) {
-      $('#' + nutrient).html(Math.round(totalNutrients[nutrient]/$('#' + nutrient + '_val').html()*100));
-      console.log($('#' + nutrient + '_val').html())
+      var percentageValue = Math.round(totalNutrients[nutrient] / $('#' + nutrient + '_val').html() * 100);
+      $('#' + nutrient).attr('aria-valuenow', percentageValue);
+      $('#' + nutrient + '_percent').html(percentageValue + "%");
+      if (percentageValue <= 100) {
+        $('#' + nutrient).attr('style', "width: " + percentageValue + "%");
+        if (percentageValue <= 50){
+          $('#' + nutrient + '_percent').html(percentageValue + "%" + " | Try to increase amount?");
+        };
+      } else {
+        $('#' + nutrient).attr('style', "width: 100%");
+        $('#' + nutrient).removeClass('progress-bar-warning');
+        $('#' + nutrient).addClass('progress-bar-success');
+        if (percentageValue >= 350) {
+          $('#' + nutrient + '_percent').html(percentageValue + "%" + " | Try to decrease amount?");
+          $('#' + nutrient).removeClass('progress-bar-success');
+          $('#' + nutrient).addClass('progress-bar-warning');
+        };
+      };
     });
   });
 });
-
 
 
 $(function(){
