@@ -5,8 +5,12 @@ class Recipe < ApplicationRecord
   has_many :favorites, dependent: :destroy
   validates :name, presence: :true
   validates :dog, presence: :true
+  mount_uploader :photo, PhotoUploader
 
   acts_as_votable
 
   accepts_nested_attributes_for :doses, reject_if: :all_blank, allow_destroy: true
 end
+
+
+

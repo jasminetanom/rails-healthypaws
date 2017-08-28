@@ -11,6 +11,7 @@
 //= require tabs
 //= require favorite
 
+
 var ingredients = [
 {name:'Chicken breast, skinless, boneless', energy_kcal:1.51,protein_g:0.3054,fat_g:0.0317,fiber_g:0,calcium_mg:0.05,iron_mg:0.0045,magnesium_mg:0.34,phosphorus_mg:2.58,potassium_mg:3.91,sodium_mg:0.52,zinc_mg:0.009,niacin_mg:0.12133,pyridoxine_mg:0.01157,folate_ug:0,vitamin_b12_ug:0.0021,vitamin_a_iu:0.1,vitamin_e_mg:0.0054,vitamin_d_iu:0.01,riboflavin_mg:0.00213,thiamin_mg:0.00107},
 {name:'Cheese, Cheddar', energy_kcal:4.04,protein_g:0.2287,fat_g:0.3331,fiber_g:0,calcium_mg:7.1,iron_mg:0.0014,magnesium_mg:0.27,phosphorus_mg:4.55,potassium_mg:0.76,sodium_mg:6.53,zinc_mg:0.0364,niacin_mg:0.00059,pyridoxine_mg:0.00066,folate_ug:0.27,vitamin_b12_ug:0.011,vitamin_a_iu:12.42,vitamin_e_mg:0.0071,vitamin_d_iu:0.24,riboflavin_mg:0.00428,thiamin_mg:0.00029},
@@ -69,11 +70,28 @@ $(document).ready(function() {
     }
 
     Object.keys(totalNutrients).forEach(function(nutrient) {
-      $('#' + nutrient).html(Math.round(totalNutrients[nutrient]/$('#' + nutrient + '_val').html()*100));
-      console.log($('#' + nutrient + '_val').html())
+      var percentageValue = Math.round(totalNutrients[nutrient] / $('#' + nutrient + '_val').html() * 100);
+      $('#' + nutrient).attr('aria-valuenow', percentageValue);
+      $('#' + nutrient + '_percent').html(percentageValue + "%");
+      if (percentageValue <= 100) {
+        $('#' + nutrient).attr('style', "width: " + percentageValue + "%");
+        if (percentageValue <= 50){
+          $('#' + nutrient + '_percent').html(percentageValue + "%" + " | Try to increase amount?");
+        };
+      } else {
+        $('#' + nutrient).attr('style', "width: 100%");
+        $('#' + nutrient).removeClass('progress-bar-warning');
+        $('#' + nutrient).addClass('progress-bar-success');
+        if (percentageValue >= 350) {
+          $('#' + nutrient + '_percent').html(percentageValue + "%" + " | Try to decrease amount?");
+          $('#' + nutrient).removeClass('progress-bar-success');
+          $('#' + nutrient).addClass('progress-bar-warning');
+        };
+      };
     });
   });
 });
+
 
 
 

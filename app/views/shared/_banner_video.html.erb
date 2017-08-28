@@ -1,25 +1,18 @@
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
 
 <div class="banner-video">
+  <video autoplay loop id="video-background" muted plays-inline>
+    <source src="http://res.cloudinary.com/tanjamiee/video/upload/c_crop,h_750,w_1920/v1503465708/cute_puppy_on_beach_ynck7y.mp4" type="video/mp4">
+  </video>
+
   <div class="vid-content">
+    <h1>Feed your furry friend <span>what fits them best</span></h1>
+    <p>Create complete and balanced recipes customized to your dog's nutritional needs</p>
 
-    <div class="vid-content__overlay">
-      <h1>Feed your furry friend what fits them best</h1>
-      <p>Create complete and balanced recipes customized to your dog's nutritional needs</p>
-
-      <div class="row">
-        <div class="col-xs-12 text-center col-sm-3 col-sm-offset-3 btn-cta" >
-          <%= link_to "Try building a recipe", '#recipe-builder', class: 'btn' %>
-        </div>
-        <div class="col-xs-12 text-center col-sm-3 btn-cta">
-          <%= link_to "Browse recipes", '#browse-recipe', class: 'btn' %>
-        </div>
-      </div>
+    <div class="row">
+      <a href="/recipes/new" class="btn btn-gold" role="button">Build a recipe</a>
     </div>
   </div>
-
-  <video autoplay loop id="video-background" muted plays-inline>
-    <source src="https://res.cloudinary.com/tanjamiee/video/upload/v1503465708/cute_puppy_on_beach_ynck7y.mp4" type="video/mp4">
-  </video>
 </div>
+
 
