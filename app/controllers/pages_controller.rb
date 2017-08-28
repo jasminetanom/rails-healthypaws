@@ -16,8 +16,10 @@ class PagesController < ApplicationController
     @user = current_user
     if @user.dog.present?
       @recipes = @user.dog.recipes
+      @favorite_recipes = @user.favorite_recipes
     else
       @recipes = []
+      @favorite_recipes = []
     end
   end
 end

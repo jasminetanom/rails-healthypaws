@@ -2,6 +2,7 @@ class Recipe < ApplicationRecord
   belongs_to :dog
   has_many :doses, dependent: :destroy, inverse_of: :recipe
   has_many :ingredients, through: :doses
+  has_many :favorites, dependent: :destroy
   validates :name, presence: :true
   validates :dog, presence: :true
 
