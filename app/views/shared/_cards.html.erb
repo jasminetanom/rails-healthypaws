@@ -11,7 +11,7 @@
               <div class="card-content">
                 <h4><%= recipe.name %></h4>
                 <p style="font-size: 12px">
-                <% @recipe.doses.each do |dose| %></p>
+                <% recipe.doses.each do |dose| %></p>
                   <div class="row">
                     <div class="col-md-8 text-right">
                       <%= dose.ingredient.name %>
@@ -19,6 +19,7 @@
                     <div class="col-md-4">
                       <%= dose.amount %>
                     </div>
+
                   </div>
                 <% end %>
               </div>
