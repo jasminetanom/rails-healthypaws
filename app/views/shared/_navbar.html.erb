@@ -51,7 +51,10 @@
         <li><a href="/recipe_book">My Recipe Book</a></li>
         <li><a href="/recipes">Browse Recipes</a></li>
         <li><a href="/dashboard">My Profile</a></li>
-        <li><a href="/users/sign_out">Log Out</a></li>
+        <li><%= link_to destroy_user_session_path, method: :delete do %>
+        <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+        <% end %>
+        </li>
 
       </ul>
     </div>
