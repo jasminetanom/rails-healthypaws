@@ -25,7 +25,6 @@ gem 'carrierwave', '~> 0.11.2'
 gem 'paper_trail'
 gem 'omniauth-facebook'
 gem "cocoon"
-gem 'simple_form_extension'
 
 gem "letter_opener", group: :development
 
