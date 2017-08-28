@@ -19,6 +19,7 @@ class User < ApplicationRecord
   validates_integrity_of :photo
   validates_processing_of :photo
 
+  acts_as_voter
 
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)
