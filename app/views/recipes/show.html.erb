@@ -15,6 +15,7 @@
 
   <div>
     <h3>Recipe for <%= @recipe.name %> </h3>
+    <!-- Star for favoriting recipes to save into the Recipe Book  -->
     <div class="favorite-star <%= 'active' if @is_recipe_favorited %>" data-recipe-id="<%= @recipe.id %>">
       <span class="fa fa-star<%= '-o' unless @is_recipe_favorited %>"></span>
       <p class="favorite-msg">Added to favorite recipes!</p>
