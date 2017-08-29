@@ -3,6 +3,7 @@ class RecipesController < ApplicationController
 
   before_action :check_if_user_has_recipe, only: :show
   before_action :authenticate_user!, if: :has_recipe?, only: :show
+  before_action :set_ingredients, only: [:new, :create, :edit, :update]
 
   def index
       @user = current_user
@@ -72,6 +73,10 @@ class RecipesController < ApplicationController
   end
 
   private
+
+  def set_ingredients
+    @ingredients = Ingredient.order(:name)
+  end
 
   def check_if_user_has_recipe
     dog = current_or_guest_user.dog

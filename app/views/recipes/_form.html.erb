@@ -14,3 +14,51 @@
   </div>
   <%= f.submit class: 'btn' %>
 <% end %>
+
+<% content_for :inline_javascript do %>
+<script>
+
+var ingredients = <%= raw @ingredients.to_json %>;
+
+var totalNutrients = {energy_kcal:0,protein_g:0,fat_g:0,fiber_g:0,calcium_mg:0,iron_mg:0,magnesium_mg:0,phosphorus_mg:0,potassium_mg:0,sodium_mg:0,zinc_mg:0,niacin_mg:0,pyridoxine_mg:0,folate_ug:0,vitamin_b12_ug:0,vitamin_a_iu:0,vitamin_e_mg:0,vitamin_d_iu:0,riboflavin_mg:0,thiamin_mg:0}
+
+$(document).ready(function() {
+
+  $(document).on('click', '#check_recipe', function(event) {
+    var ids = [];
+    $('.ingredient_name').each(function(i, item) {
+      ids.push($(item).val());
+    });
+
+
+    var amounts = [];
+    $('.ingredient_amount').each(function(i, item) {
+      amounts.push($(item).val());
+    });
+
+
+    Object.keys(totalNutrients).forEach(function(nutrient) {
+      totalNutrients[nutrient] = 0
+    });
+
+
+    for (var i = 0; i < ids.length; i += 1) {
+      Object.keys(totalNutrients).forEach(function(nutrient) {
+        console.log('ingredients', ingredients);
+        var ingredient = ingredients.find(function(ingredient) {
+          return ids[i] == ingredient.id;
+        });
+
+        totalNutrients[nutrient] = totalNutrients[nutrient] + ingredient[nutrient] * amounts[i]
+      });
+    }
+
+    Object.keys(totalNutrients).forEach(function(nutrient) {
+      $('#' + nutrient).html(Math.round(totalNutrients[nutrient]/$('#' + nutrient + '_val').html()*100));
+      console.log($('#' + nutrient + '_val').html())
+    });
+  });
+});
+
+</script>
+<% end %>

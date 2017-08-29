@@ -21,7 +21,7 @@ end
   user = User.create(email: Faker::Internet.email, password: "123456", password_confirmation: "123456", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
   p "User Created"
 
-  Dog.create(
+  dog = Dog.create({
     user: user,
     name: Faker::GameOfThrones.dragon,
     weight: rand(5..49),
@@ -30,34 +30,21 @@ end
     is_sterilized: [true, true, false].sample,
     life_stage: ["adult", "senior", "puppy"].sample,
     body_condition_score: rand(1..5)
-  )
+  })
 
+  3.times do
+    recipe = Recipe.create({
+      name: Faker::GameOfThrones.dragon,
+      dog: dog
+    })
+
+    3.times do
+      recipe.doses << Dose.create({
+        recipe: recipe,
+        ingredient: Ingredient.all.sample,
+        amount: rand(1..9),
+        unit: ["mg", "ug"].sample
+      })
+    end
+  end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
