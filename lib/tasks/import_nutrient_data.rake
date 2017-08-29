@@ -164,5 +164,5 @@ def create_ingredient(values_in_hash)
 
   merged_options = default_options.merge(values_in_hash)
 
-  # Ingredient.create!(merged_options)
+  Ingredient.create!(merged_options)
 end
