@@ -78,7 +78,7 @@ INGREDIENTS_MAP = [
   },
   {
     name: 'Vitamin A, IU',#
-    column_prefix: 'vitamin_a_iu'
+    column_prefix: 'vitamin_a'
   },
   {
     name: 'Vitamin E (alpha-tocopherol)',#
@@ -118,13 +118,6 @@ def parse_csv_file(path)
     end
   end
 
-  #{
-  #  :name =>
-  #  :energy => 123.45,
-  #  :energy_kcal => 123.45,
-  #  :protein_g => 345.45,
-  #  ....
-  #}
 
   values_in_hash[:name] = ingredient_name
 
@@ -136,12 +129,37 @@ def format_hash_key(nutrient_name, unit)
   unit = 'ug' if unit == 'µg'
   unit = 'iu' if unit == 'IU'
 
+
   [ingredient_item[:column_prefix], unit].join('_').to_sym
 end
 
 def create_ingredient(values_in_hash)
   puts "values_in_hash #{values_in_hash}"
   # print into another file
-  #
-  #Ingredient.create(values_in_hash)
+  default_options = {
+   energy_kcal: 0,
+   protein_g: 0,
+   fat_g: 0,
+   fiber_g: 0,
+   calcium_mg: 0,
+   iron_mg: 0,
+   magnesium_mg: 0,
+   phosphorus_mg: 0,
+   potassium_mg: 0,
+   sodium_mg: 0,
+   zinc_mg: 0,
+   thiamin_mg: 0,
+   riboflavin_mg: 0,
+   niacin_mg: 0,
+   pyridoxine_mg: 0,
+   folate_ug: 0,
+   vitamin_b12_ug: 0,
+   vitamin_a_iu: 0,
+   vitamin_e_mg: 0,
+   vitamin_d_iu: 0
+  }
+
+  merged_options = default_options.merge(values_in_hash)
+
+  Ingredient.create!(merged_options)
 end
