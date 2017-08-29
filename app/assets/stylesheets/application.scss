@@ -9,6 +9,9 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+// Vendors
+@import "vendors/bootstrap-slider";
+
 // Your CSS partials
 @import "layouts/index";
 @import "components/index";
