@@ -31,8 +31,11 @@ function markRecipeAsFavorited(recipeId, callback) {
       console.log('success');
       callback();
     },
-    error: function() {
-      console.log('error');
+    error: function(err) {
+      console.log('error', err);
+      if (err.status) {
+        window.location = '/users/sign_in';
+      }
     }
   });
 }

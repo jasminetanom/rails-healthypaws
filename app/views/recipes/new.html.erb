@@ -12,12 +12,6 @@
     <div class="col-sm-5 col-sm-offset-1">
       <div class="panel">
         <div class="panel-body">
-        <div class="row">
-          <div class="col-xs-offset-2 col-xs-4">
-            <%= button_tag "Check nutritional status of recipe", :type => 'button', :id => "check_recipe", class: 'btn' %>
-          </div>
-        </div>
-        </br>
             <div class="row">
               <div class="col-xs-2 progress-title"></br><strong>Nutrient</strong></div>
               <div class="col-xs-8 progress-title"><strong>Percentage of <%= @user.dog.name.capitalize %>'s Daily Nutritional Requirement Fulfilled by Current Recipe</strong></div>
