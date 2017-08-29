@@ -1,30 +1,63 @@
-<h1>Dashboard</h1>
-<p></p>
+<div class="container-dashboard">
+  <div class="row-user-header">
+    <h1>Welcome, <%= @user.first_name %>!</h1>
+  </div>
 
-<h2>Dog Profile</h2>
-<% if @dogs.blank? %>
-  <p>You have not added a dog yet</p>
-<% else %>
-  <% @dogs.each do |dog| %>
-    <%= link_to dog do %>
-    <p><%= dog.name %></p>
-    <p><%= dog.weight %></p>
-    <p><%= dog.size %></p>
-    <p><%= dog.life_stage %></p>
-    <p><%= dog.is_sterilized %></p>
-    <p><%= dog.body_condition_score %></p>
-    <p><%= dog.photo %></p>
-    <% end %>
-  <% end %>
-<% end %>
+  <div class="row-dog-profile">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="panel">
+          <div class="panel-heading">
+            <h2>Your dog's profile</h2>
+              <div class="panel-body">
+                <% if @dogs.blank? %>
+                <p>You have not added a dog yet</p>
+                <% else %>
+                <% @dogs.each do |dog| %>
+                  <%= link_to dog do %>
+                    <% end %>
+                  <p><%= dog.photo %></p>
+                  <p><%= dog.name %> is a <%= dog.weight %>kg <%= dog.size %> sized <%= dog.life_stage %> doggo! Is <%= dog.name %> sterilised? It is entirely and completely <%= dog.is_sterilized %>! <%= dog.name %> also has a body condition score of <%= dog.body_condition_score %>/5.</p>
 
-<h2>Nutrition Profile</h2>
-<% @nutrients.each do |nutrient| %>
-  <p><%= nutrient.split('_')[0...-1].join(' ').titlecase %>: <%= '%.2f' % @nutrition_req[nutrient] %> <%= nutrient.split('_')[-1].downcase %>
-  </p>
-<% end %>
+                <% end %>
+                <% end %>
+              </div>
 
-<h2>Recipe Book</h2>
-<%= link_to "See your recipes and favourites", recipe_book_path, class: 'btn btn-primary' %>
+            <div class="panel-body">
+              <h4>Daily nutritional needs</h4>
+                  <% @nutrients.each do |nutrient| %>
+                    <p><%= nutrient.split('_')[0...-1].join(' ').titlecase %>: <%= '%.2f' % @nutrition_req[nutrient] %> <%= nutrient.split('_')[-1].downcase %>
+                    </p>
+                  <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="panel">
+          <div class="panel-heading">
+            <h2>Recent recipes</h2>
+          </div>
+
+          <div class="panel-body">
+            <% if @recipes.blank? %>
+              <h3>You have not added a recipe yet</h3>
+              <div><%= link_to "Add a recipe", new_recipe_path, class: 'btn btn-primary' %></div>
+            <% else %>
+              <% @recipes.each do |recipe| %>
+                <div>
+                  <%= link_to recipe.name, recipe_path(recipe) %>
+                </div>
+              <% end %>
+            <% end %>
+            <br>
+            <div><%= link_to "See your recipe book", recipe_book_path, class: 'btn btn-primary' %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
