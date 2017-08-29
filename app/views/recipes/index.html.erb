@@ -1,7 +1,7 @@
 <div class="container">
   <div class="panel">
     <div class="panel-heading">
-      <h1>Recipes</h1>
+      <h3>Browse Recipes</h3>
     </div>
 
     <div class="panel-body">
@@ -16,6 +16,23 @@
             <th colspan="3"></th>
           </tr>
         </thead>
+
+      <div class="search">
+        <%= form_tag recipes_path, :method => :get do %>
+          <input type="hidden" name="search" value="true">
+            <label>Filter by ingredient:</label>
+            <select type="search" name="ingredient">
+                <option></option>
+                <option>Chicken breast, skinless, boneless</option>
+                <option>Cheese, Cheddar</option>
+                <option>Pacific Cod</option>
+                <option>Brocolli</option>
+                <option>Quinoa</option>
+            </select>
+            <button>Search</button>
+        <% end %>
+      </div>
+      <br>
 
         <tbody>
           <% @recipes.each do |recipe| %>

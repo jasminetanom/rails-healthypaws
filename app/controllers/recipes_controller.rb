@@ -5,9 +5,18 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!, if: :has_recipe?, only: :show
 
   def index
-      @user = current_user
-      non_guest_users = User.where.not(first_name: 'guest', last_name: 'guest').includes(:recipes)
+    @user = current_user
+    non_guest_users = User.where.not(first_name: 'guest', last_name: 'guest').includes(:recipes)
+
+    if params[:search] == "true"
+      search_recipes = Recipe.where(nil)
+      filtering_params(params).each do|key, value|
+        search_recipes = Ingredient.find_by(name: value).recipes if value.present?
+      end
+      @recipes = search_recipes
+    else
       @recipes = non_guest_users.map(&:recipes).flatten
+    end
   end
 
   def show
@@ -95,6 +104,10 @@ class RecipesController < ApplicationController
         :_destroy
       ]
     )
+  end
+
+  def filtering_params(params)
+    params.slice(:ingredient)
   end
 
 end
