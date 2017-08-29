@@ -34,7 +34,7 @@ end
 
   3.times do
     recipe = Recipe.create({
-      name: Faker::GameOfThrones.dragon,
+      name: Faker::Food.dish,
       dog: dog
     })
 
