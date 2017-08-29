@@ -1,3 +1,4 @@
+
 <%= simple_form_for(@dog, :html => {:class => 'form-horizontal form-dog-create' }) do |f| %>
   <%= f.error_notification %>
   <%= f.hidden_field :user_id, value: current_or_guest_user.id %>
@@ -75,3 +76,5 @@
     <%= f.button :submit, "Show nutritional requirements", class: "btn"  %>
   </div>
 <% end %>
+
+
