@@ -1,5 +1,5 @@
 .tabs {
-  background: #F4F4F4;
+  background: #FFFFFA;
   display: flex;
   padding: 10px 0px 0 0px;
 }
@@ -33,11 +33,12 @@
   border-radius: 0 10px 0 0;
 }
 .tab.active {
-  background: white;
+  background: #FCFAF0;
   color: black;
 }
 .tab-content {
   padding-top: 0px;
+  background: #FCFAF0;
 }
 .tab-content p {
   font-size: 30px;
