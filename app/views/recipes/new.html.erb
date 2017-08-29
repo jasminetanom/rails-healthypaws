@@ -38,6 +38,9 @@
                 <span hidden="hidden" id=<%= nutrient + "_val" %>>
                   <%= @nutrition_req[nutrient] %>
                 </span>
+                <span hidden="hidden" id=<%= nutrient + "_unit" %>>
+                  <%= nutrient.split('_')[-1] %>
+                </span>
               </div>
               <div class="col-xs-2 no-padding">
                 <div class="nutrient-amount">
@@ -53,32 +56,7 @@
     <div class="col-sm-5">
       <div class="panel">
         <div class="panel-body">
-          <%= simple_form_for @recipe do |f| %>
-  <%= f.input :name, label: 'Recipe Name' %>
-  <%= f.hidden_field :dog_id, value: @user.dog.id %>
-      </div>
-  </div>
-
-  <div class="panel">
-        <div class="panel-body">
-
-  <h4>Select Your Ingredients</h4>
-
-  <div id="doses">
-    <%= f.simple_fields_for :doses do |dose| %>
-      <%= render 'dose_fields', f: dose %>
-    <% end %>
-    <div class="links">
-      <%= link_to_add_association '+', f, :doses, class: 'btn' %>
-    </div>
-  </div>
-    </div>
-  </div>
-  <%= f.submit class: 'btn' %>
-<% end %>
-
-
-
+          <%= render partial: 'recipe_form' %>
     </div>
   </div>
 </div>

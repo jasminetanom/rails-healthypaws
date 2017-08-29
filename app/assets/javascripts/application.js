@@ -5,12 +5,12 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require cocoon
+//= require vendors/bootstrap-slider.min
 //
 // Custom
 //
 //= require tabs
 //= require favorite
-
 
 var ingredients = [
 {name:'Chicken breast, skinless, boneless', energy_kcal:1.51,protein_g:0.3054,fat_g:0.0317,fiber_g:0,calcium_mg:0.05,iron_mg:0.0045,magnesium_mg:0.34,phosphorus_mg:2.58,potassium_mg:3.91,sodium_mg:0.52,zinc_mg:0.009,niacin_mg:0.12133,pyridoxine_mg:0.01157,folate_ug:0,vitamin_b12_ug:0.0021,vitamin_a_iu:0.1,vitamin_e_mg:0.0054,vitamin_d_iu:0.01,riboflavin_mg:0.00213,thiamin_mg:0.00107},
@@ -45,7 +45,7 @@ var totalNutrients = {energy_kcal:0,protein_g:0,fat_g:0,fiber_g:0,calcium_mg:0,i
 
 $(document).ready(function() {
 
-  $(document).on('click', '#check_recipe', function(event) {
+  $(document).on('change', '.bootstrap-slider', function(event) {
     var ids = [];
     $('.ingredient_name').each(function(i, item) {
       ids.push($(item).val());
@@ -72,24 +72,27 @@ $(document).ready(function() {
     Object.keys(totalNutrients).forEach(function(nutrient) {
       var percentageValue = Math.round(totalNutrients[nutrient] / $('#' + nutrient + '_val').html() * 100);
       $('#' + nutrient).attr('aria-valuenow', percentageValue);
-      $('#' + nutrient + '_percent').html(percentageValue + "%");
+      $('#' + nutrient + '_percent').html(Number((totalNutrients[nutrient]).toFixed(2)) + $('#' + nutrient + '_unit').html() + "   |   " + percentageValue + "%");
       if (percentageValue <= 100) {
         $('#' + nutrient).attr('style', "width: " + percentageValue + "%");
         if (percentageValue <= 50){
-          $('#' + nutrient + '_percent').html(percentageValue + "%" + " | Try to increase amount?");
+          $('#' + nutrient + '_percent').html(Number((totalNutrients[nutrient]).toFixed(2)) + $('#' + nutrient + '_unit').html() + "   |   " + percentageValue + "%" + "   |   need more");
         };
       } else {
         $('#' + nutrient).attr('style', "width: 100%");
         $('#' + nutrient).removeClass('progress-bar-warning');
         $('#' + nutrient).addClass('progress-bar-success');
         if (percentageValue >= 350) {
-          $('#' + nutrient + '_percent').html(percentageValue + "%" + " | Try to decrease amount?");
+          $('#' + nutrient + '_percent').html(Number((totalNutrients[nutrient]).toFixed(2)) + $('#' + nutrient + '_unit').html() + "   |   " + percentageValue + "%" + "   |   too much");
           $('#' + nutrient).removeClass('progress-bar-success');
           $('#' + nutrient).addClass('progress-bar-warning');
         };
       };
     });
   });
+
+
+
 });
 
 

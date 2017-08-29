@@ -149,6 +149,7 @@ SimpleForm.setup do |config|
     boolean: :vertical_boolean,
     datetime: :multi_select,
     date: :multi_select,
-    time: :multi_select
+    time: :multi_select,
+    slider: :multi_select
   }
 end

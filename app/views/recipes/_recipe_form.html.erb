@@ -1,8 +1,8 @@
-<%= simple_form_for @recipe do |f| %>
+<%= simple_form_for @recipe, class: 'form-recipe' do |f| %>
   <%= f.input :name, label: 'Recipe Name' %>
   <%= f.hidden_field :dog_id, value: @user.dog.id %>
 
-  <h4> Ingredients </h4>
+  <h4>Ingredients</h4>
 
   <div id="doses">
     <%= f.simple_fields_for :doses do |dose| %>
@@ -13,4 +13,14 @@
     </div>
   </div>
   <%= f.submit class: 'btn' %>
+<% end %>
+
+
+<% content_for(:inline_javascript) do %>
+  <script>
+    $('#doses').on('cocoon:after-insert', function(e, insertedItem) {
+      console.log('.form-recipe after');
+      $('#doses .bootstrap-slider').slider({});
+    });
+  </script>
 <% end %>
