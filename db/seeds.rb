@@ -1,4 +1,8 @@
+require "faker"
+
 Ingredient.delete_all
+User.delete_all
+Dog.delete_all
 
 ingredients = [
   {name:'Chicken breast, skinless, boneless',energy_kcal:1.51, protein_g:0.3054,fat_g:0.0317,fiber_g:0,calcium_mg:0.05,iron_mg:0.0045,magnesium_mg:0.34,phosphorus_mg:2.58,potassium_mg:3.91,sodium_mg:0.52,zinc_mg:0.009,niacin_mg:0.12133,pyridoxine_mg:0.01157,folate_ug:0,vitamin_b12_ug:0.0021,vitamin_a_iu:0.1,vitamin_e_mg:0.0054,vitamin_d_iu:0.01,riboflavin_mg:0.00213,thiamin_mg:0.00107},
@@ -10,4 +14,37 @@ ingredients = [
 
 ingredients.each do |ingredient|
   Ingredient.create(ingredient)
+end
+
+
+20.times do
+  user = User.create(email: Faker::Internet.email, password: "123456", password_confirmation: "123456", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
+  p "User Created"
+
+  dog = Dog.create({
+    user: user,
+    name: Faker::GameOfThrones.dragon,
+    weight: rand(5..49),
+    activity_level: ["low", "medium", "high"].sample,
+    size: ["large", "medium", "small"].sample,
+    is_sterilized: [true, true, false].sample,
+    life_stage: ["adult", "senior", "puppy"].sample,
+    body_condition_score: rand(1..5)
+  })
+
+  3.times do
+    recipe = Recipe.create({
+      name: Faker::Food.dish,
+      dog: dog
+    })
+
+    3.times do
+      recipe.doses << Dose.create({
+        recipe: recipe,
+        ingredient: Ingredient.all.sample,
+        amount: rand(1..9),
+        unit: ["mg", "ug"].sample
+      })
+    end
+  end
 end
