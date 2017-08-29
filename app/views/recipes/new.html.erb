@@ -12,12 +12,6 @@
     <div class="col-sm-5 col-sm-offset-1">
       <div class="panel">
         <div class="panel-body">
-        <div class="row">
-          <div class="col-xs-offset-2 col-xs-4">
-            <%= button_tag "Check nutritional status of recipe", :type => 'button', :id => "check_recipe", class: 'btn' %>
-          </div>
-        </div>
-        </br>
             <div class="row">
               <div class="col-xs-2 progress-title"></br><strong>Nutrient</strong></div>
               <div class="col-xs-8 progress-title"><strong>Percentage of <%= @user.dog.name.capitalize %>'s Daily Nutritional Requirement Fulfilled by Current Recipe</strong></div>
@@ -38,6 +32,9 @@
                 <span hidden="hidden" id=<%= nutrient + "_val" %>>
                   <%= @nutrition_req[nutrient] %>
                 </span>
+                <span hidden="hidden" id=<%= nutrient + "_unit" %>>
+                  <%= nutrient.split('_')[-1] %>
+                </span>
               </div>
               <div class="col-xs-2 no-padding">
                 <div class="nutrient-amount">
@@ -53,32 +50,7 @@
     <div class="col-sm-5">
       <div class="panel">
         <div class="panel-body">
-          <%= simple_form_for @recipe do |f| %>
-  <%= f.input :name, label: 'Recipe Name' %>
-  <%= f.hidden_field :dog_id, value: @user.dog.id %>
-      </div>
-  </div>
-
-  <div class="panel">
-        <div class="panel-body">
-
-  <h4>Select Your Ingredients</h4>
-
-  <div id="doses">
-    <%= f.simple_fields_for :doses do |dose| %>
-      <%= render 'dose_fields', f: dose %>
-    <% end %>
-    <div class="links">
-      <%= link_to_add_association '+', f, :doses, class: 'btn' %>
-    </div>
-  </div>
-    </div>
-  </div>
-  <%= f.submit class: 'btn' %>
-<% end %>
-
-
-
+          <%= render partial: 'recipe_form' %>
     </div>
   </div>
 </div>
