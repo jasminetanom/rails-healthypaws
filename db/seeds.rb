@@ -32,18 +32,19 @@ end
     body_condition_score: rand(1..5)
   })
 
-  recipe = Recipe.create({
-    name: Faker::GameOfThrones.dragon,
-    dog: dog
-  })
-
   3.times do
-    recipe.doses << Dose.create({
-      recipe: recipe,
-      ingredient: Ingredient.all.sample,
-      amount: rand(1..9),
-      unit: ["mg", "ug"].sample
+    recipe = Recipe.create({
+      name: Faker::GameOfThrones.dragon,
+      dog: dog
     })
-  end
 
+    3.times do
+      recipe.doses << Dose.create({
+        recipe: recipe,
+        ingredient: Ingredient.all.sample,
+        amount: rand(1..9),
+        unit: ["mg", "ug"].sample
+      })
+    end
+  end
 end
