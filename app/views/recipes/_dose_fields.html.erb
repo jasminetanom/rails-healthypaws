@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-3">
-        <%= f.input :ingredient_id, collection: Ingredient.all, input_html: { class: 'ingredient_name' } %>
+        <%= f.input :ingredient_id, collection: Ingredient.order(:name), input_html: { class: 'ingredient_name' } %>
       </div>
       <div class="col-sm-1">
         <%= f.input :amount, input_html: { class: 'ingredient_amount' }  %>

@@ -103,10 +103,13 @@ INGREDIENT_NAMES = INGREDIENTS_MAP.map { |ingredient_item| ingredient_item[:name
 def parse_csv_file(path)
   puts "path #{path}"
   content_lines = CSV.read(path, :encoding => 'windows-1251:utf-8')
+
+  ingredient_line = content_lines.find { |line| line[0] =~ /Nutrient data for/  }.first
+
   # drop all header lines
   content_lines = content_lines.drop(3)
   # get the ingredient name
-  ingredient_name = content_lines[0][0].split(',')[1..-1].join()
+  ingredient_name = ingredient_line.split(',')[1..-1].join()
   # drop other headers
   content_lines = content_lines.drop(3)
 
@@ -161,5 +164,5 @@ def create_ingredient(values_in_hash)
 
   merged_options = default_options.merge(values_in_hash)
 
-  Ingredient.create!(merged_options)
+  # Ingredient.create!(merged_options)
 end
