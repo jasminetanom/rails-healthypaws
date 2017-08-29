@@ -12,6 +12,8 @@ class User < ApplicationRecord
 
   has_one :dog, dependent: :destroy
   has_many :recipes, through: :dog
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_recipes, through: :favorites, source: :recipe, class_name: 'Recipe'
 
   validates :first_name, :last_name, presence:true, unless: :from_omniauth?
 
@@ -19,6 +21,7 @@ class User < ApplicationRecord
   validates_integrity_of :photo
   validates_processing_of :photo
 
+  acts_as_voter
 
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)

@@ -3,18 +3,25 @@
 <div class="container container-recipe-show">
   <div class="clearfix">
     <div class='pull-right'>
-      <%= link_to "Edit Recipe", edit_recipe_path, class: 'btn' %>
+      <%= link_to "Edit Recipe", edit_recipe_path, class: 'btn btn-info' %>
     </div>
     <div class='text-left'>
-      <%= link_to "Back to Recipe Book", recipe_book_path, class: 'btn' %>
+      <%= link_to "Back to Recipe Book", recipe_book_path, class: 'btn btn-primary' %>
     </div>
     <!-- <h6>
       Delete Recipe - needs to be linked
     </h6> -->
   </div>
 
-  <h3>Recipe for <%= @recipe.name %></h3>
+  <div>
+    <h3>Recipe for <%= @recipe.name %> </h3>
+    <div class="favorite-star <%= 'active' if @is_recipe_favorited %>" data-recipe-id="<%= @recipe.id %>">
+      <span class="fa fa-star<%= '-o' unless @is_recipe_favorited %>"></span>
+      <p class="favorite-msg">Added to favorite recipes!</p>
+    </div>
+  </div>
 
+  <hr>
 
   <div class="row">
     <div class="col-sm-6">
@@ -45,6 +52,7 @@
       <div class="panel">
         <div class="panel-body">
           <h4>Ingredients</h4>
+
 
           <hr/>
 

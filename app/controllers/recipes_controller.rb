@@ -13,8 +13,10 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @nutrients = %w(energy_kcal protein_g fat_g fiber_g calcium_mg iron_mg magnesium_mg phosphorus_mg potassium_mg sodium_mg zinc_mg thiamin_mg riboflavin_mg niacin_mg pyridoxine_mg folate_ug vitamin_b12_ug vitamin_a_iu vitamin_e_mg vitamin_d_iu)
+    @nutrients = %w(energy_kcal protein_g fat_g calcium_mg iron_mg magnesium_mg phosphorus_mg potassium_mg sodium_mg zinc_mg thiamin_mg riboflavin_mg niacin_mg pyridoxine_mg folate_ug vitamin_b12_ug vitamin_a_iu vitamin_e_mg vitamin_d_iu)
     @recipe_nutrition_info = RecipeNutritionInfo.find_by(recipe_id: @recipe.id)
+
+    @is_recipe_favorited = current_user && Favorite.find_by(user: current_user, recipe: @recipe).present?
   end
 
   def new
@@ -22,7 +24,7 @@ class RecipesController < ApplicationController
     if @user.dog.present?
       @recipe = Recipe.new(dog: @user.dog)
       @nutrition_req = @user.dog.nutrition_req
-      @nutrients = %w(energy_kcal protein_g fat_g fiber_g calcium_mg iron_mg magnesium_mg phosphorus_mg potassium_mg sodium_mg zinc_mg thiamin_mg riboflavin_mg niacin_mg pyridoxine_mg folate_ug vitamin_b12_ug vitamin_a_iu vitamin_e_mg vitamin_d_iu)
+      @nutrients = %w(energy_kcal protein_g fat_g calcium_mg iron_mg magnesium_mg phosphorus_mg potassium_mg sodium_mg zinc_mg thiamin_mg riboflavin_mg niacin_mg pyridoxine_mg folate_ug vitamin_b12_ug vitamin_a_iu vitamin_e_mg vitamin_d_iu)
     else
       redirect_to new_dog_path
     end
@@ -31,7 +33,7 @@ class RecipesController < ApplicationController
   def create
     @user = current_or_guest_user
     @nutrition_req = @user.dog.nutrition_req
-    @nutrients = %w(energy_kcal protein_g fat_g fiber_g calcium_mg iron_mg magnesium_mg phosphorus_mg potassium_mg sodium_mg zinc_mg thiamin_mg riboflavin_mg niacin_mg pyridoxine_mg folate_ug vitamin_b12_ug vitamin_a_iu vitamin_e_mg vitamin_d_iu)
+    @nutrients = %w(energy_kcal protein_g fat_g calcium_mg iron_mg magnesium_mg phosphorus_mg potassium_mg sodium_mg zinc_mg thiamin_mg riboflavin_mg niacin_mg pyridoxine_mg folate_ug vitamin_b12_ug vitamin_a_iu vitamin_e_mg vitamin_d_iu)
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
       @recipe_nutrition_info = RecipeNutritionInfo.new(recipe_id: @recipe.id)
@@ -89,6 +91,7 @@ class RecipesController < ApplicationController
     recipe_params = params.require(:recipe).permit(
       :name,
       :dog_id,
+      :photo, :photo_cache,
       doses_attributes: [
         :id,
         :ingredient_id,

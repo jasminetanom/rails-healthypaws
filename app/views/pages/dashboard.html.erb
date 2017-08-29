@@ -4,19 +4,27 @@
 <h2>Dog Profile</h2>
 <% if @dogs.blank? %>
   <p>You have not added a dog yet</p>
-    <% else %>
-    <% @dogs.each do |dog| %>
-      <%= link_to lense do %>
-      <% end %>
+<% else %>
+  <% @dogs.each do |dog| %>
+    <%= link_to dog do %>
+    <p><%= dog.name %></p>
+    <p><%= dog.weight %></p>
+    <p><%= dog.size %></p>
+    <p><%= dog.life_stage %></p>
+    <p><%= dog.is_sterilized %></p>
+    <p><%= dog.body_condition_score %></p>
+    <p><%= dog.photo %></p>
     <% end %>
+  <% end %>
 <% end %>
 
 <h2>Nutrition Profile</h2>
 <% @nutrients.each do |nutrient| %>
-  <p><%= nutrient.split('_')[0...-1].join(' ').titlecase %>: <%= @nutrition_req[nutrient] %> <%= nutrient.split('_')[-1].downcase %>
+  <p><%= nutrient.split('_')[0...-1].join(' ').titlecase %>: <%= '%.2f' % @nutrition_req[nutrient] %> <%= nutrient.split('_')[-1].downcase %>
   </p>
 <% end %>
 
 <h2>Recipe Book</h2>
+<%= link_to "See your recipes and favourites", recipe_book_path, class: 'btn btn-primary' %>
 
 

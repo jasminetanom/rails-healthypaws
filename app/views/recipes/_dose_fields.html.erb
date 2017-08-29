@@ -6,10 +6,10 @@
         <%= f.input :ingredient_id, collection: Ingredient.order(:name), input_html: { class: 'ingredient_name' } %>
       </div>
       <div class="col-sm-1">
-        <%= f.input :amount, input_html: { class: 'ingredient_amount' }  %>
+        <%= f.input :amount, label: false, placeholder: 'Amount', input_html: { class: 'ingredient_amount' } %>
       </div>
       <div class="col-sm-1">
-        <%= link_to_remove_association "Remove", f, class: 'btn btn-danger' %>
+        <%= link_to_remove_association "-", f, class: 'btn', style: 'width: 35px;' %>
       </div>
     </div>
   </div>

@@ -1,0 +1,51 @@
+.nutrient-label {
+    line-height: 15px;
+    font-size: 12px;
+    text-align: right;
+    padding-right: 5px;
+}
+
+.nutrient-amount {
+    line-height: 15px;
+    font-size: 12px;
+    text-align: left;
+    padding-left: 5px
+}
+
+.progress-title{
+    line-height: 15px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.progress {
+    height: 15px;
+    margin-bottom: 5px;
+    background-color: #008CA3
+}
+
+.progress-bar {
+    height: 15px;
+    position: absolute;
+}
+
+.nutrient-progress-percentage-label{
+  text-align: center;
+  line-height: 15px;
+  font-size: 12px;
+  overflow: hidden;
+  color: #fff;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  position: absolute;
+}
+
+.no-padding{
+  padding: 0px;
+}
+
+.links {
+  display: inline;
+}
