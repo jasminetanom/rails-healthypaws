@@ -44,6 +44,7 @@ class RecipesController < ApplicationController
     @nutrition_req = @user.dog.nutrition_req
     @nutrients = %w(energy_kcal protein_g fat_g calcium_mg iron_mg magnesium_mg phosphorus_mg potassium_mg sodium_mg zinc_mg thiamin_mg riboflavin_mg niacin_mg pyridoxine_mg folate_ug vitamin_b12_ug vitamin_a_iu vitamin_e_mg vitamin_d_iu)
     @recipe = Recipe.new(recipe_params)
+    @recipe.photo = "http://res.cloudinary.com/tanjamiee/image/upload/v1504071220/HealthyPaws_Logo_Flavicon_flattened_ggoqcz.png" if @recipe.photo.empty?
     if @recipe.save
       @recipe_nutrition_info = RecipeNutritionInfo.new(recipe_id: @recipe.id)
       if @recipe.doses.any?

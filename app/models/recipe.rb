@@ -5,6 +5,7 @@ class Recipe < ApplicationRecord
   has_many :favorites, dependent: :destroy
   validates :name, presence: :true
   validates :dog, presence: :true
+
   mount_uploader :photo, PhotoUploader
 
   acts_as_votable
