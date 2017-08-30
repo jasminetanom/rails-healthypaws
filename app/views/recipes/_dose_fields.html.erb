@@ -3,7 +3,7 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-sm-11">
-          <%= f.input :ingredient_id, label: false, collection: Ingredient.all, input_html: { class: 'ingredient_name' } %>
+          <%= f.input :ingredient_id, label: false, collection: @ingredients, input_html: { class: 'ingredient_name' } %>
         </div>
         <div class="col-sm-1 no-padding">
           <%= link_to_remove_association "-", f, class: 'btn btn-danger' %>
