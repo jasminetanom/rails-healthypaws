@@ -9,13 +9,17 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
-    <div class="main-content">
-      <%= yield %>
+    <div class="wrapper">
+      <%= render 'shared/navbar' %>
+      <%= render 'shared/flashes' %>
+      <div class="main-content">
+        <%= yield %>
+      </div>
+      <div class="push"></div>
+      <%= render 'shared/footer' %>
+      <%= javascript_include_tag 'application' %>
+      <%= content_for(:inline_javascript) %>
     </div>
-    <%= render 'shared/footer' %>
-    <%= javascript_include_tag 'application' %>
-    <%= content_for(:inline_javascript) %>
   </body>
 </html>
+

@@ -8,6 +8,7 @@ color: #DFBA69;
 
 .footer {
   background: #FCFAF0;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -32,6 +33,20 @@ color: #DFBA69;
 }
 .footer .fa-heart {
   color: #DFBA69;
+}
+* {
+    margin: 0;
+}
 
-
+html, body {
+    height: 100%;
+}
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -50px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer, .push {
+    height: 50px; /* .push must be the same height as .footer */
 }
