@@ -7,6 +7,10 @@
   font-family: Montserrat, sans-serif;
 }
 
+.banner-video {
+  position: relative;
+}
+
 #video-background {
   z-index: 102;
   margin-left: 0px;
@@ -18,13 +22,13 @@
 .banner-video .vid-content {
   z-index: 103;
   position: absolute;
-  top: 45%;
   width: 100%;
-  margin-top: -45px;
+  // margin-top: -45px;
+  bottom: 20%;
 }
 
 .banner-video h1 {
-  font-size: 42px;
+  font-size: 3vw;
   color: #FCFAF0;
   text-align: center;
   font-family: Montserrat, sans-serif;
@@ -32,7 +36,7 @@
 }
 
 .banner-video p {
-  font-size: 21px;
+  font-size: 2vw;
   color: #FCFAF0;
   text-align: center;
   font-family: Montserrat, sans-serif;
@@ -40,7 +44,7 @@
 }
 
 .banner-video span {
-  font-size: 42px;
+  font-size: 1vw;
   color: #FCFAF0;
   text-align: center;
   font-family: Montserrat, sans-serif;
@@ -50,6 +54,7 @@
 }
 
 .row-action-button {
+  font-size: 2vw;
   text-align: center;
   margin-top: 35px;
 }
