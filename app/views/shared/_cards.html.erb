@@ -10,16 +10,16 @@
 
               <div class="panel panel--card">
                 <div class="panel-body">
+                  <div class="text-center">
+                    <%= card_image recipe %>
+                  </div>
                   <h4 class="recipe-name">
                     <%= recipe.name %>
                   </h4>
                   <p class="recipe-ingredients">
-                    <%= recipe.doses.first(3).map{ |dose| dose.ingredient.name }.join(', ') %>
+                    <%= recipe.doses.first(2).map{ |dose| dose.ingredient.name }.join(', ') %>
                   </p>
-
-                  <div class="text-center">
-                    <%= card_image recipe %>
-                  </div>
+                  <p> Made by: <%= @user.first_name %></p>
                 </div>
               </div>
             </div>
