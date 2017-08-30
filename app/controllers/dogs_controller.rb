@@ -21,6 +21,7 @@ class DogsController < ApplicationController
         format.json { render json: @dog.errors, status: :unprocessable_entity }
       end
     else
+      puts "dogs #{@dog.errors.inspect}"
       render 'pages/home'
     end
   end

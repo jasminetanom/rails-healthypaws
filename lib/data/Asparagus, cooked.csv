@@ -1,7 +1,7 @@
 Source: USDA National Nutrient Database for Standard Reference 28 slightly revised May 2016 Software v.3.8.6.1 2017-07-28
 Basic Report
 Report Run at: August 28, 2017 02:21 EDT
-"Nutrient data for: 11012, Asparagus, cooked, boiled, drained"
+"Nutrient data for: 11012, Asparagus"
 Nutrient,Unit,1Value per 100 g,"0.5 cup = 90.0g","4.0 spears (1/2"" base) = 60.0g",
 Proximates
 "Water",g,92.63,83.37,55.58
@@ -25,14 +25,14 @@ Vitamins
 "Riboflavin",mg,0.139,0.125,0.083
 "Niacin",mg,1.084,0.976,0.650
 "Vitamin B-6",mg,0.079,0.071,0.047
-"Folate, DFE",µg,149,134,89
-"Vitamin B-12",µg,0.00,0.00,0.00
-"Vitamin A, RAE",µg,50,45,30
+"Folate, DFE",ï¿½g,149,134,89
+"Vitamin B-12",ï¿½g,0.00,0.00,0.00
+"Vitamin A, RAE",ï¿½g,50,45,30
 "Vitamin A, IU",IU,1006,905,604
 "Vitamin E (alpha-tocopherol)",mg,1.50,1.35,0.90
-"Vitamin D (D2 + D3)",µg,0.0,0.0,0.0
+"Vitamin D (D2 + D3)",ï¿½g,0.0,0.0,0.0
 "Vitamin D",IU,0,0,0
-"Vitamin K (phylloquinone)",µg,50.6,45.5,30.4
+"Vitamin K (phylloquinone)",ï¿½g,50.6,45.5,30.4
 Lipids
 "Fatty acids, total saturated",g,0.048,0.043,0.029
 "Fatty acids, total monounsaturated",g,0.000,0.000,0.000
