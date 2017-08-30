@@ -7,7 +7,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: -130px;
 }
 
 .banner-middle h1 {
@@ -16,15 +15,10 @@
   color: #FCFAF0;
   font-family: Montserrat, sans-serif;
   text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-}
-.banner-middle p {
-  font-size: 25px;
-  font-weight: lighter;
-  color: rgb(255, 255, 255);
-  opacity: 1;
-  margin-bottom: 30px;
-  font-family: Montserrat, sans-serif;
+
+  margin-bottom: 50px;
 }
 
-
-
+.banner-middle .recipe-name {
+  margin-bottom: 15px;
+}
