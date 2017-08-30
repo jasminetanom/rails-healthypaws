@@ -7,7 +7,7 @@ class DogsController < ApplicationController
 
   def create
     @dog = Dog.new(dog_params)
-    @dog.photo = "http://res.cloudinary.com/tanjamiee/image/upload/v1504071221/Default_Dog_ueg4ej.png" if @dog.photo.empty?
+    @dog.photo = "http://res.cloudinary.com/tanjamiee/image/upload/v1504071221/Default_Dog_ueg4ej.png" if @dog.photo.blank?
     if @dog.save
       reqs = get_reqs(@dog.weight, @dog.multiplier, @dog.life_stage)
       @nutrition_req = NutritionReq.new(dog: @dog)
@@ -21,8 +21,7 @@ class DogsController < ApplicationController
         format.json { render json: @dog.errors, status: :unprocessable_entity }
       end
     else
-      puts "dogs #{@dog.errors.inspect}"
-      render 'pages/home'
+      render :new
     end
   end
 

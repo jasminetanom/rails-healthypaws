@@ -23,11 +23,9 @@
             <label>Filter by ingredient:</label>
             <select type="search" name="ingredient">
                 <option></option>
-                <option>Chicken breast, skinless, boneless</option>
-                <option>Cheese, Cheddar</option>
-                <option>Pacific Cod</option>
-                <option>Brocolli</option>
-                <option>Quinoa</option>
+                <% Ingredient.find_each do |ingredient| %>
+                  <option><%= ingredient.name %></option>
+                <% end %>
             </select>
             <button>Search</button>
         <% end %>

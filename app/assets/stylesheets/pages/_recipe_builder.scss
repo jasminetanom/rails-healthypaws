@@ -29,6 +29,14 @@
     position: absolute;
 }
 
+.text-align-left {
+  text-align: left;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
 .nutrient-progress-percentage-label{
   text-align: center;
   line-height: 15px;
@@ -79,7 +87,7 @@
 }
 
 .slider.slider-horizontal {
-    width: 460px;
+    width: 350px;
     height: 20px;
 }
 
@@ -102,7 +110,7 @@
 
 .control-label {
   font-weight: normal;
-  font-size: 14px;
+  font-size: 13px;
 }
 .padding-top{
   padding-top: 8px;
@@ -112,5 +120,22 @@ hr {
     margin-top: 30px;
     margin-bottom: 30px;
     border: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
 }
+
+.btn-nutrient-info {
+    font-size: 10px;
+    padding: 0px 5px;
+    border-radius: 50%;
+}
+
+.popover {
+  font-size: 12px;
+}
+
+.hr-less-padding {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+
+ }
