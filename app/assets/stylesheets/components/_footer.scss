@@ -8,6 +8,10 @@ color: #DFBA69;
 
 .footer {
   background: #FCFAF0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -32,6 +36,5 @@ color: #DFBA69;
 }
 .footer .fa-heart {
   color: #DFBA69;
-
-
 }
+

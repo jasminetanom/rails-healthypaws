@@ -4,7 +4,7 @@
       <% if @recipes.blank? %>
        <p>No recipes to show</p>
        <% else %>
-        <% @recipes.each do |recipe| %>
+        <% @recipes.last(3).each do |recipe| %>
         <%= link_to recipe do %>
           <div class="col-xs-12 col-sm-4">
             <div class="outer-card">
