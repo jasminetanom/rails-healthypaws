@@ -12,16 +12,27 @@
       Delete Recipe - needs to be linked
     </h6> -->
   </div>
-
-  <div>
-    <h3>Recipe for <%= @recipe.name %> </h3>
-    <div class="favorite-star <%= 'active' if @is_recipe_favorited %>" data-recipe-id="<%= @recipe.id %>">
-      <span class="fa fa-star<%= '-o' unless @is_recipe_favorited %>"></span>
-      <p class="favorite-msg">Added to favorite recipes!</p>
+  <div class="row">
+    <div class="col-sm-1 col-sm-offset-2">
+      <!-- Star for favoriting recipes to save into the Recipe Book  -->
+      <div class="favorite-star <%= 'active' if @is_recipe_favorited %>" data-recipe-id="<%= @recipe.id %>">
+        <span class="fa fa-star<%= '-o' unless @is_recipe_favorited %>"></span>
+        <p class="favorite-msg">Added to favorite recipes!</p>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <h3>Recipe for <%= @recipe.name %></h3>
+    </div>
+    <div class="col-sm-3">
+      <div class="social-icons">
+        <span class="fa fa-weibo"></span>&nbsp;&nbsp;&nbsp;
+        <span class="fa fa-facebook-square"></span>&nbsp;&nbsp;&nbsp;
+        <span class="fa fa-twitter-square"></span>&nbsp;&nbsp;&nbsp;
+        <span class="fa fa-instagram"></span>&nbsp;&nbsp;&nbsp;
+        <span class="fa fa-pinterest-square"></span>
+      </div>
     </div>
   </div>
-
-  <hr>
 
   <div class="row">
     <div class="col-sm-6">
