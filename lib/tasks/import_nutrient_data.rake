@@ -3,6 +3,10 @@ require 'csv'
 namespace :import_nutrient_data do
   desc "Import Nutrient Data from downloaded CSV"
   task :run => :environment do
+    Dose.delete_all
+    Recipe.delete_all
+    Ingredient.delete_all
+
     # loop for all files inside data folder
     data_directory = File.join(Rails.root,
 "lib",
@@ -110,6 +114,7 @@ def parse_csv_file(path)
   content_lines = content_lines.drop(3)
   # get the ingredient name
   ingredient_name = ingredient_line.split(',')[1..-1].join()
+
   # drop other headers
   content_lines = content_lines.drop(3)
 
@@ -122,14 +127,14 @@ def parse_csv_file(path)
   end
 
 
-  values_in_hash[:name] = ingredient_name
+  values_in_hash[:name] = ingredient_name.strip
 
   create_ingredient(values_in_hash)
 end
 
 def format_hash_key(nutrient_name, unit)
   ingredient_item = INGREDIENTS_MAP.find { |ingredient_item| ingredient_item[:name] == nutrient_name }
-  unit = 'ug' if unit == 'µg'
+  unit = 'ug' if unit == 'µg' || unit == 'пїЅg'
   unit = 'iu' if unit == 'IU'
 
 
