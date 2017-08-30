@@ -1,0 +1,33 @@
+<div class="cards">
+  <div class="container">
+    <div class="row">
+      <% if @recipes.blank? %>
+       <p>No recipes to show</p>
+       <% else %>
+        <% @recipes.each do |recipe| %>
+          <%= link_to recipe do %>
+            <div class="col-xs-12 col-sm-4">
+
+
+              <div class="panel panel--card">
+                <div class="panel-body">
+                  <div class="text-center">
+                    <%= card_image recipe %>
+                  </div>
+                  <h4 class="recipe-name">
+                    <%= recipe.name %>
+                  </h4>
+                  <p class="recipe-ingredients">
+                    <%= recipe.doses.first(2).map{ |dose| dose.ingredient.name }.join(', ') %>
+                  </p>
+                  <p> Made by: <%= @user.first_name %></p>
+                </div>
+              </div>
+
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
