@@ -24,7 +24,8 @@ Dog.delete_all
   3.times do
     recipe = Recipe.create({
       name: Faker::Food.dish,
-      dog: dog
+      dog: dog,
+      photo: "http://res.cloudinary.com/tanjamiee/image/upload/v1504071220/HealthyPaws_Logo_Flavicon_flattened_ggoqcz.png"
     })
 
     3.times do
