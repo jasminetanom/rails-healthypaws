@@ -1,6 +1,12 @@
-<div class="container-dashboard">
-  <div class="row-user-header">
-    <h1>Welcome, <%= @user.first_name %>!</h1>
+<div class="container">
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel">
+    <div class="panel-body">
+      <h1>Welcome to <%= @user.first_name %>'s Profile!</h1>
+    </div>
+    </div>
+    </div>
   </div>
 
   <div class="row-dog-profile">
@@ -15,7 +21,13 @@
                 <% else %>
 
                   <p><%= @dog.photo %></p>
-                  <p><%= @dog.name %> is a <%= @dog.weight %>kg <%= @dog.size %> sized <%= @dog.life_stage %> doggo! Is <%= @dog.name %> sterilised? It is entirely and completely <%= @dog.is_sterilized %>! <%= @dog.name %> also has a body condition score of <%= @dog.body_condition_score %>/5.</p>
+                  <p><%= @dog.name %> is a <%= @dog.weight %>kg <%= @dog.size %> sized <%= @dog.life_stage %> doggo!
+                  <% if @dog.is_sterilized %>
+                    <%= @dog.name %> has been neutered/spayed.
+                  <% else %>
+                    <%= @dog.name %> hasn't been neutered/spayed.
+                  <% end %>
+                  <%= @dog.name %> also has a body condition score of <%= @dog.body_condition_score %>/5.</p>
 
 
               </div>
