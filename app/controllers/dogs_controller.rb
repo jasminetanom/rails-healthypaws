@@ -7,6 +7,7 @@ class DogsController < ApplicationController
 
   def create
     @dog = Dog.new(dog_params)
+    @dog.photo = "http://res.cloudinary.com/tanjamiee/image/upload/v1504071221/Default_Dog_ueg4ej.png" if @dog.photo.empty?
     if @dog.save
       reqs = get_reqs(@dog.weight, @dog.multiplier, @dog.life_stage)
       @nutrition_req = NutritionReq.new(dog: @dog)

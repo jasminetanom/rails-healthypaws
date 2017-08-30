@@ -28,11 +28,9 @@ function markRecipeAsFavorited(recipeId, callback) {
     url: '/recipes/' + recipeId + '/favorite',
     method: 'PUT',
     success: function(data) {
-      console.log('success');
       callback();
     },
     error: function(err) {
-      console.log('error', err);
       if (err.status) {
         window.location = '/users/sign_in';
       }
