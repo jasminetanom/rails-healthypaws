@@ -1,12 +1,10 @@
 <div class="nested-fields">
   <div class="panel" style="background-color: white;">
-    <div class="panel-body">
+    <div class="panel-body no-bottom-padding">
       <div class="row">
-        <div class="col-sm-11">
-          <%= f.input :ingredient_id, label: false, collection: @ingredients, input_html: { class: 'ingredient_name' } %>
-        </div>
-        <div class="col-sm-1 no-padding">
-          <%= link_to_remove_association "-", f, class: 'btn btn-danger' %>
+      <%= link_to_remove_association "X", f, class: 'btn btn-minus' %>
+        <div class="col-sm-12">
+          <%= f.input :ingredient_id, label: false, collection: Ingredient.all, input_html: { class: 'ingredient_name' } %>
         </div>
       </div>
       <div class="row">
