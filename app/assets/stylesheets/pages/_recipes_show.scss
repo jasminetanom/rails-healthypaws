@@ -20,10 +20,6 @@
   cursor: pointer;
 }
 
-body {
-  padding-top: 20px;
-}
-
 .favorite-star span {
   margin-left: 4px;
   margin-top: 3px;
@@ -66,5 +62,10 @@ span:active {
 
 * {
   transition: all .32s ease;
+}
+
+.social-icons {
+  font-size: 23px;
+  margin-top: 27px;
 }
 

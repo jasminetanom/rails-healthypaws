@@ -10,17 +10,14 @@
           <div class="panel-heading">
             <h2>Your dog's profile</h2>
               <div class="panel-body">
-                <% if @dogs.blank? %>
+                <% if @dog.nil? %>
                 <p>You have not added a dog yet</p>
                 <% else %>
-                <% @dogs.each do |dog| %>
-                  <%= link_to dog do %>
-                    <% end %>
-                  <p><%= dog.photo %></p>
-                  <p><%= dog.name %> is a <%= dog.weight %>kg <%= dog.size %> sized <%= dog.life_stage %> doggo! Is <%= dog.name %> sterilised? It is entirely and completely <%= dog.is_sterilized %>! <%= dog.name %> also has a body condition score of <%= dog.body_condition_score %>/5.</p>
 
-                <% end %>
-                <% end %>
+                  <p><%= @dog.photo %></p>
+                  <p><%= @dog.name %> is a <%= @dog.weight %>kg <%= @dog.size %> sized <%= @dog.life_stage %> doggo! Is <%= @dog.name %> sterilised? It is entirely and completely <%= dog.is_sterilized %>! <%= @dog.name %> also has a body condition score of <%= @dog.body_condition_score %>/5.</p>
+
+
               </div>
 
             <div class="panel-body">
@@ -29,6 +26,7 @@
                     <p><%= nutrient.split('_')[0...-1].join(' ').titlecase %>: <%= '%.2f' % @nutrition_req[nutrient] %> <%= nutrient.split('_')[-1].downcase %>
                     </p>
                   <% end %>
+               <% end %>
             </div>
           </div>
         </div>
@@ -41,23 +39,24 @@
           </div>
 
           <div class="panel-body">
-            <% if @recipes.blank? %>
+            <% if @recipes.empty? %>
               <h3>You have not added a recipe yet</h3>
               <div><%= link_to "Add a recipe", new_recipe_path, class: 'btn btn-primary' %></div>
             <% else %>
               <% @recipes.each do |recipe| %>
-                <div>
-                  <%= link_to recipe.name, recipe_path(recipe) %>
-                </div>
+              <%= link_to recipe.name, recipe_path(recipe) %>
               <% end %>
+              <div><%= link_to "See your recipe book", recipe_book_path, class: 'btn btn-primary' %></div>
             <% end %>
             <br>
-            <div><%= link_to "See your recipe book", recipe_book_path, class: 'btn btn-primary' %></div>
+
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
 
 
