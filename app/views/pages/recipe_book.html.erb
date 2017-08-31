@@ -1,12 +1,12 @@
 <% content_for(:title_tag) do %>
-  HealthyPaws | Recipes for a balanced feeding of your best friend
+  HealthyPaws | Your Recipe Book
 <% end %>
 <div class="container">
   <div class="row">
   <div class="col-sm-12">
     <div class="panel">
-    <div class="panel-body">
-      <h1>Welcome to <%= @user.first_name %>'s Recipe Book!</h1>
+    <div class="panel-body recipe-book-background">
+      <h3><strong>YOUR RECIPE BOOK</strong></h3>
     </div>
     </div>
     </div>
@@ -55,7 +55,9 @@
               <% end %>
             </tbody>
           </table>
-          <%= link_to "Create a new recipe", new_recipe_path, class: 'btn' %>
+            <div class="row-action-button">
+              <a href="/recipes/new" class="btn btn-info" role="button">Create a new recipe</a>
+            </div>
         </div>
       </div>
     </div>
@@ -93,7 +95,9 @@
               <% end %>
             </tbody>
           </table>
-           <%= link_to "Find new favorite recipes", recipes_path, class: 'btn' %>
+           <div class="row-action-button">
+                  <a href="/recipes" class="btn btn-info" role="button">Find new favorite recipes</a>
+            </div>
         </div>
       </div>
     </div>
