@@ -69,5 +69,9 @@ class ApplicationController < ActionController::Base
     session[:guest_user_id] = nil
   end
 
+  def default_url_options
+  { host: ENV["HOST"] || "localhost:3000" }
+  end
+
 end
 

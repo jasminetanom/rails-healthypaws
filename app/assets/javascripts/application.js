@@ -6,6 +6,7 @@
 //= require bootstrap-sprockets
 //= require cocoon
 //= require vendors/bootstrap-slider.min
+//= require vendors/owl.carousel.min
 //
 // Custom
 //
@@ -26,4 +27,5 @@ $(function(){
   });
 
 });
+
 

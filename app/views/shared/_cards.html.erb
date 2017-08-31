@@ -2,12 +2,11 @@
   <div class="container">
     <div class="row">
       <% if @recipes.blank? %>
-       <p>No recipes to show</p>
+         <p>No recipes to show</p>
        <% else %>
-        <% @recipes.last(3).each do |recipe| %>
-          <%= link_to recipe do %>
-            <div class="col-xs-12 col-sm-4">
-
+         <div class="owl-carousel owl-theme">
+          <% @recipes.each do |recipe| %>
+            <%= link_to recipe do %>
               <div class="panel panel--card">
                 <div class="panel-body">
                   <div class="text-center">
@@ -17,15 +16,29 @@
                     <%= recipe.name %>
                   </h4>
                   <p class="recipe-ingredients">
-                    <%= recipe.doses.first(2).map{ |dose| dose.ingredient.name }.join(', ') %>
+                    Includes: <%= recipe.doses.first(2).map{ |dose| dose.ingredient.name }.join(', ') %>
                   </p>
-                  <p> Made by: <%= @user.first_name %></p>
                 </div>
               </div>
-            </div>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       <% end %>
     </div>
+    <br>
+    <div><%= link_to "See More Recipes", recipes_path, class: 'btn btn-gold' %></div>
   </div>
 </div>
+
+<% content_for(:inline_javascript) do %>
+  <script>
+    $(document).ready(function(){
+      $('.owl-carousel').owlCarousel({
+        autoplay: true});
+      $('.owl-carousel').owlCarousel({
+        autoplayTimeout: 5000
+      });
+    });
+  </script>
+<% end %>
+
