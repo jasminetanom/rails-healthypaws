@@ -14,12 +14,19 @@
   color: #FCFAF0;
   text-align: center;
   position: relative;
-  margin-top: -285px;
+  // margin-top: -295px;
   font-family: Montserrat, sans-serif;
   text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  vertical-align: top;
 }
 
 .banner-middle .recipe-name {
   margin-bottom: 15px;
 }
 
+.container-cards {
+  background: rgba(252, 248, 227, 0);
+  color: #FCFAF0;
+  font-size: 1vw;
+
+}

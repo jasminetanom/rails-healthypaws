@@ -16,9 +16,8 @@
                     <%= recipe.name %>
                   </h4>
                   <p class="recipe-ingredients">
-                    <%= recipe.doses.first(2).map{ |dose| dose.ingredient.name }.join(', ') %>
+                    Includes: <%= recipe.doses.first(2).map{ |dose| dose.ingredient.name }.join(', ') %>
                   </p>
-                  <p> Made by: <%= @user.last(3).first_name %></p>
                 </div>
               </div>
             </div>

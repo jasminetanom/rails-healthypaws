@@ -17,10 +17,11 @@
             <h2>Your dog's profile</h2>
               <div class="panel-body">
                 <% if @dog.nil? %>
+                <%= dog_card_image dog %>
                 <p>You have not added a dog yet</p>
                 <% else %>
 
-                  <p><%= @dog.photo %></p>
+                  <p><%= cl_image_tag @dog.photo, width: 250, height: 250, crop: :fill %></p>
                   <p><%= @dog.name %> is a <%= @dog.weight %>kg <%= @dog.size %> sized <%= @dog.life_stage %> doggo!
                   <% if @dog.is_sterilized %>
                     <%= @dog.name %> has been neutered/spayed.
