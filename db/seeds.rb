@@ -5,6 +5,7 @@ Recipe.delete_all
 User.delete_all
 Dog.delete_all
 
+NUTRIENTS = %w(energy_kcal protein_g fat_g calcium_mg iron_mg magnesium_mg phosphorus_mg potassium_mg sodium_mg zinc_mg thiamin_mg riboflavin_mg niacin_mg pyridoxine_mg folate_ug vitamin_b12_ug vitamin_a_iu vitamin_e_mg vitamin_d_iu)
 
 20.times do
   user = User.create(email: Faker::Internet.email, password: "123456", password_confirmation: "123456", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
@@ -31,9 +32,17 @@ Dog.delete_all
       recipe.doses << Dose.create({
         recipe: recipe,
         ingredient: Ingredient.all.sample,
-        amount: rand(1..9),
+        amount: rand(10..90),
         unit: ["mg", "ug"].sample
       })
     end
+
+    recipe_nutrition_info = RecipeNutritionInfo.new(recipe_id: recipe.id)
+    recipe.doses.each do |dose|
+      NUTRIENTS.each do |nutrient|
+        recipe_nutrition_info[nutrient] += (dose.ingredient[nutrient] * dose.amount)
+      end
+    end
+    recipe_nutrition_info.save
   end
 end
