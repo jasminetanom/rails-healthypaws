@@ -1,29 +1,29 @@
 .create-dog-background{
-  background-image: url(create_dog_icon.png);
+  background-image: asset-url('create_dog_icon.png');
   background-repeat: repeat repeat;
 }
 
 .create-recipe-background{
-  background-image: url(create_recipe_icon2.png);
+  background-image: asset-url('create_recipe_icon2.png');
   background-repeat: repeat repeat;
 }
 
 .profile-background{
-  background-image: url(profile_icon.png);
+  background-image: asset-url('profile_icon.png');
   background-repeat: repeat repeat;
 }
 
 .recipe-show-background{
-  background-image: url(recipe_show_icon.png);
+  background-image: asset-url('recipe_show_icon.png');
   background-repeat: repeat repeat;
 }
 
 .recipe-book-background{
-  background-image: url(recipe_book_icon.png);
+  background-image: asset-url('recipe_book_icon.png');
   background-repeat: repeat repeat;
 }
 
 .recipe-all-background{
-  background-image: url(recipe_all_icon.png);
+  background-image: asset-url('recipe_all_icon.png');
   background-repeat: repeat repeat;
 }

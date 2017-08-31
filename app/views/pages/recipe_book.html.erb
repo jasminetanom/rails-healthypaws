@@ -26,38 +26,13 @@
 <!--         <div class="panel-heading">
           <h3>My Recipes</h3>
         </div> -->
-        <div class="panel-body">
+        <div class="panel-body no-padding">
+          <div class="row-action-button">
+            <a href="/recipes/new" class="btn btn-info" role="button">Create a new recipe</a>
+          </div>
           <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Recipe</th>
-                <th>Calories</th>
-                <th>Protein</th>
-                <th>Fat</th>
-                <th colspan="3"></th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% @recipes.each do |recipe| %>
-                <tr>
-                  <td><%= link_to recipe.name, recipe_path(recipe) %></td>
-                  <% if RecipeNutritionInfo.find_by(recipe_id: recipe.id).nil? %>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                  <% else %>
-                    <td><%= RecipeNutritionInfo.find_by(recipe_id: recipe.id)["energy_kcal"] %></td>
-                    <td><%= RecipeNutritionInfo.find_by(recipe_id: recipe.id)["protein_g"]%></td>
-                    <td><%= RecipeNutritionInfo.find_by(recipe_id: recipe.id)["fat_g"]%></td>
-                  <% end %>
-                </tr>
-              <% end %>
-            </tbody>
+              <%= render "shared/cards_browse" %>
           </table>
-            <div class="row-action-button">
-              <a href="/recipes/new" class="btn btn-info" role="button">Create a new recipe</a>
-            </div>
         </div>
       </div>
     </div>
@@ -67,37 +42,40 @@
 <!--         <div class="panel-heading">
            <h3>Favorited Recipes</h3>
         </div> -->
-        <div class="panel-body">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Recipe</th>
-                <th>Calories</th>
-                <th>Protein</th>
-                <th>Fat</th>
-                <th colspan="3"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @user.favorite_recipes.each do |recipe| %>
-                <tr>
-                  <td><%= link_to recipe.name, recipe_path(recipe) %></td>
-                  <% if RecipeNutritionInfo.find_by(recipe_id: recipe.id).nil? %>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                  <% else %>
-                    <td><%= RecipeNutritionInfo.find_by(recipe_id: recipe.id)["energy_kcal"] %></td>
-                    <td><%= RecipeNutritionInfo.find_by(recipe_id: recipe.id)["protein_g"]%></td>
-                    <td><%= RecipeNutritionInfo.find_by(recipe_id: recipe.id)["fat_g"]%></td>
-                  <% end %>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-           <div class="row-action-button">
+        <div class="panel-body no-padding">
+        <div class="row-action-button">
                   <a href="/recipes" class="btn btn-info" role="button">Find new favorite recipes</a>
             </div>
+          <table class="table table-hover">
+
+
+              <% @user.favorite_recipes.each do |recipe| %>
+                <%= link_to recipe do %>
+            <%= link_to recipe do %>
+            <div class="col-xs-12 col-sm-4">
+
+
+              <div class="panel panel--card">
+                <div class="panel-body">
+                  <div class="text-center">
+                    <%= card_image recipe %>
+                  </div>
+                  <h4 class="recipe-name">
+                    <%= recipe.name %>
+                  </h4>
+                  <p class="recipe-ingredients">
+                    Includes: <strong><%= recipe.doses.first(2).map{ |dose| dose.ingredient.name }.join(', ') %></strong>
+                  </p>
+                  <p> By: <strong><%= recipe.dog.user.first_name %></strong></p>
+                </div>
+              </div>
+
+            </div>
+          <% end %>
+        <% end %>
+        <% end %>
+          </table>
+
         </div>
       </div>
     </div>
