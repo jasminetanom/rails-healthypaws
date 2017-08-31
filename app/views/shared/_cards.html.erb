@@ -16,17 +16,19 @@
                     <%= recipe.name %>
                   </h4>
                   <p class="recipe-ingredients">
-                    Includes: <%= recipe.doses.first(2).map{ |dose| dose.ingredient.name }.join(', ') %>
+                    Includes: <strong><%= recipe.doses.first(2).map{ |dose| dose.ingredient.name }.join(', ') %></strong>
                   </p>
+                  <p> By: <strong><%= recipe.dog.user.first_name %></strong></p>
                 </div>
               </div>
+
             <% end %>
           <% end %>
         </div>
       <% end %>
     </div>
     <br>
-    <div><%= link_to "See More Recipes", recipes_path, class: 'btn btn-gold' %></div>
+    <div><%= link_to "See More Recipes", recipes_path, class: 'btn btn-info' %></div>
   </div>
 </div>
 
