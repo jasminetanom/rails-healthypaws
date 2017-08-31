@@ -2,10 +2,16 @@
 <html>
   <head>
     <%= favicon_link_tag %>
+
+    <%= csrf_meta_tags %>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <title><%=yield(:title_tag).blank? ? "Healthypaws | Create balanced recipes for your dog's nutritional needs" : yield(:title_tag) %> </title>
-    <%= action_cable_meta_tag %>
+    <title>
+      <%=yield(:title_tag).blank? ? "Healthypaws | Create balanced recipes for your dog's nutritional needs" : yield(:title_tag) %>
+
+    </title>
+
     <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
   <body>
