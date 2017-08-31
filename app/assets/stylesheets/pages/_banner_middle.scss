@@ -10,15 +10,27 @@
 }
 
 .banner-middle h1 {
-  font-size: 45px;
-  font-weight: bold;
+  font-size: 3vw;
   color: #FCFAF0;
+  text-align: center;
+  position: relative;
+  // margin-top: -295px;
   font-family: Montserrat, sans-serif;
   text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-
-  margin-bottom: 50px;
+  vertical-align: top;
 }
 
 .banner-middle .recipe-name {
   margin-bottom: 15px;
+}
+
+.container-cards {
+  background: rgba(252, 248, 227, 0);
+  color: #FCFAF0;
+  font-size: 1vw;
+
+}
+
+.row-middle-content h1 {
+  padding-bottom: 20px
 }

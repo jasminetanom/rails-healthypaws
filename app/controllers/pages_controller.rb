@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
 
   def home
-    @recipes = Recipe.all
+    @recipes = Recipe.order(created_at: :desc).limit(15)
     if user_signed_in?
       redirect_to :recipe_book
     end
