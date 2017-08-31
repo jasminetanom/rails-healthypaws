@@ -1,16 +1,14 @@
 <% content_for(:title_tag) do %>
-  HealthyPaws | find and create recipes for your dog's needs!
+  HealthyPaws | Find your dog's next favorite recipe
 <% end %>
 <div class="container">
+<div class="row">
+  <div class="col-sm-12">
   <div class="panel">
-    <div class="panel-heading">
-      <h3>Browse Recipes</h3>
-    </div>
+    <div class="panel-body recipe-all-background">
+      <h3><strong>FIND YOUR DOG'S NEXT FAVORITE RECIPE</strong></h3>
 
-    <div class="panel-body">
-
-
-      <div class="search">
+    <div class="search">
         <%= form_tag recipes_path, :method => :get do %>
           <input type="hidden" name="search" value="true">
             <label>Filter by ingredient:</label>
@@ -23,13 +21,23 @@
             <button>Search</button>
         <% end %>
       </div>
-      <br>
+      </div>
+  </div>
+  </div>
+
+<div class="row">
+  <div class="col-sm-12">
+  <div class="panel">
+    <div class="panel-body">
+
       <div class="row row-cards">
 
         <%= render "shared/cards_browse" %>
       </div>
 
-
+</div>
+</div>
+</div>
 
 
 
