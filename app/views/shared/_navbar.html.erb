@@ -40,9 +40,9 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="/recipe_book">My Recipe Book</a></li>
-        <li><a href="/recipes">Browse Recipes</a></li>
-        <li><a href="/dashboard">My Profile</a></li>
+        <li><%= link_to "My Recipe Book", recipe_book_path %></li>
+        <li><%= link_to "Browse Recipes", recipes_path %></li>
+        <li><%= link_to "My Profile", user_path(current_user) %></li>
         <li><%= link_to destroy_user_session_path, method: :delete do %>
         <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
         <% end %>
@@ -54,7 +54,7 @@
     <div class="dropdown">
         <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-          <li><a href="/recipes">Browse Recipes</a></li>
+          <li><%= link_to "Browse Recipes", recipes_path %></li>
           <li><%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-link-login btn" %>
           </li>
     </ul>
