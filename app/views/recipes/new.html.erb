@@ -7,63 +7,66 @@
   <div class="col-sm-12">
     <div class="panel">
      <div class="panel-body create-recipe-background">
-            <h3><strong>CREATE A RECIPE CUSTOMIZED FOR YOUR DOG</strong></h3>
+            <h3>
+              <strong>
+                CREATE A RECIPE CUSTOMIZED FOR <u><%= @user.dog.name.upcase %></u>
+              </strong>
+            </h3>
       </div>
     </div>
     </div>
   </div>
 
  <div class="row">
-    <div class="col-sm-7">
-      <div class="panel">
-        <div class="panel-body">
-        <div class="row">
-          <h4>2. How does your current recipe fulfil <%= @user.dog.name.capitalize %>'s daily nutritional needs?</h4>
-        </div>
-            <div class="row">
-              <div class="col-xs-3 progress-title text-align-right"></br><strong>Nutrient</strong></div>
-              <div class="col-xs-6 progress-title"><strong>Percentage of <%= @user.dog.name.capitalize %>'s Daily Requirements Fulfilled</strong></div>
-              <div class="col-xs-3 progress-title text-align-left"><strong><%= @user.dog.name.capitalize %>'s Minimum Target Per Day</strong></div>
-            </div>
-            <div class="row">
-            <hr class="hr-less-padding">
-            </div>
-          <% @nutrients.each do |nutrient| %>
-            <div class="row">
-              <div class="col-xs-3 no-padding">
-                <div class="nutrient-label">
-                  <%= nutrient.split('_')[0...-1].join(' ').titlecase %>
-                  <button type="button" class="btn btn-nutrient-info" id=<%= nutrient + "_popover" %> data-container="body" data-toggle="popover" data-placement="right" data-content="">?</button>
-                </div>
-              </div>
-              <div class="col-xs-6 no-padding">
-                <div class="progress">
-                  <div class="nutrient-progress-percentage-label" id=<%= nutrient + "_percent" %>></div>
-                  <div class="progress-bar progress-bar-warning progress-bar-striped active" id=<%= nutrient %> role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <span hidden="hidden" id=<%= nutrient + "_val" %>>
-                  <%= @nutrition_req[nutrient] %>
-                </span>
-                <span hidden="hidden" id=<%= nutrient + "_unit" %>>
-                  <%= nutrient.split('_')[-1] %>
-                </span>
-              </div>
-              <div class="col-xs-3 no-padding">
-                <div class="nutrient-amount">
-                  <button type="button" class="btn btn-nutrient-info" id=<%= nutrient + "_sources" %> data-container="body" data-toggle="popover" data-placement="right" data-content="">i</button>
-                  <%= '%.2f' % @nutrition_req[nutrient] %> <%= nutrient.split('_')[-1] %>
-                </div>
+  <div class="col-sm-7">
+    <div class="panel">
+      <div class="panel-body">
+      <div class="row">
+        <h4>Your Recipe Nutrition Values</h4>
+      </div>
+          <div class="row">
+            <div class="col-xs-3 progress-title text-align-right"></br><strong>Nutrient</strong></div>
+            <div class="col-xs-6 progress-title"><strong>Percentage Fulfilled</strong></div>
+            <div class="col-xs-3 progress-title text-align-left"><strong><%= @user.dog.name.capitalize %>'s Minimum Daily Target</strong></div>
+          </div>
+          <div class="row">
+          <hr class="hr-less-padding">
+          </div>
+        <% @nutrients.each do |nutrient| %>
+          <div class="row">
+            <div class="col-xs-3 no-padding">
+              <div class="nutrient-label">
+                <%= nutrient.split('_')[0...-1].join(' ').titlecase %>
+                <button type="button" class="btn btn-nutrient-info" id=<%= nutrient + "_popover" %> data-container="body" data-toggle="popover" data-placement="right" data-content="">?</button>
               </div>
             </div>
-          <% end %>
-        </div>
+            <div class="col-xs-6 no-padding">
+              <div class="progress">
+                <div class="nutrient-progress-percentage-label" id=<%= nutrient + "_percent" %>></div>
+                <div class="progress-bar progress-bar-warning progress-bar-striped active" id=<%= nutrient %> role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <span hidden="hidden" id=<%= nutrient + "_val" %>>
+                <%= @nutrition_req[nutrient] %>
+              </span>
+              <span hidden="hidden" id=<%= nutrient + "_unit" %>>
+                <%= nutrient.split('_')[-1] %>
+              </span>
+            </div>
+            <div class="col-xs-3 no-padding">
+              <div class="nutrient-amount">
+                <button type="button" class="btn btn-nutrient-info" id=<%= nutrient + "_sources" %> data-container="body" data-toggle="popover" data-placement="right" data-content="">i</button>
+                <%= '%.2f' % @nutrition_req[nutrient] %> <%= nutrient.split('_')[-1] %>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
+  </div>
 
-    <div class="col-sm-5">
-
-          <%= render partial: 'recipe_form' %>
-</div>
+  <div class="col-sm-5">
+    <%= render partial: 'recipe_form' %>
+  </div>
 </div>
 
 

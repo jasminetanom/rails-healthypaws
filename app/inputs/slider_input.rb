@@ -8,8 +8,6 @@ class SliderInput < SimpleForm::Inputs::Base
     merged_input_options[:"data-slider-step"] = 5
     merged_input_options[:"data-slider-value"] = @builder.object.send(attribute_name.to_sym) || 500
 
-    puts "@builder #{@builder.inspect}"
-
     @builder.text_field(attribute_name, merged_input_options)
   end
 end
