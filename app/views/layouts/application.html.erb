@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%= favicon_link_tag %>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Healthypaws</title>
-    <%= csrf_meta_tags %>
+   <title><%=yield(:title_tag).blank? ? "Healthypaws | Create balanced recipes for your dog's nutritional needs" : yield(:title_tag) %> </title>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
