@@ -1,21 +1,29 @@
+<% content_for(:title_tag) do %>
+  HealthyPaws | Create a recipe specially for your dog
+<% end %>
+
 <div class="container">
 <div class="row">
   <div class="col-sm-12">
     <div class="panel">
-    <div class="panel-body">
-      <h1>Welcome to the Recipe Builder!</h1>
-    </div>
+     <div class="panel-body create-recipe-background">
+            <h3><strong>CREATE A RECIPE SPECIALLY FOR YOUR DOG</strong></h3>
+      </div>
     </div>
     </div>
   </div>
+
  <div class="row">
     <div class="col-sm-7">
       <div class="panel">
         <div class="panel-body">
+        <div class="row">
+          <h4>2. How does your current recipe fulfil <%= @user.dog.name.capitalize %>'s daily nutritional needs?</h4>
+        </div>
             <div class="row">
               <div class="col-xs-3 progress-title text-align-right"></br><strong>Nutrient</strong></div>
-              <div class="col-xs-6 progress-title"><strong>Percentage of <%= @user.dog.name.capitalize %>'s Daily Nutritional Requirement Fulfilled by Current Recipe</strong></div>
-              <div class="col-xs-3 progress-title text-align-left"><strong>Minimum Target Per Day</strong></div>
+              <div class="col-xs-6 progress-title"><strong>Percentage of <%= @user.dog.name.capitalize %>'s Daily Requirements Fulfillede</strong></div>
+              <div class="col-xs-3 progress-title text-align-left"><strong><%= @user.dog.name.capitalize %>'s Minimum Target Per Day</strong></div>
             </div>
             <div class="row">
             <hr class="hr-less-padding">

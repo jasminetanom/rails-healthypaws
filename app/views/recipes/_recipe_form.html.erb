@@ -1,7 +1,21 @@
-<hr>
-<h4>Describe Your Recipe</h4>
+<br>
+
 
 <%= simple_form_for @recipe, class: 'form-recipe' do |f| %>
+  <h4>1. Select Your Ingredients</h4>
+
+  <div id="doses">
+    <%= f.simple_fields_for :doses do |dose| %>
+      <%= render 'dose_fields', f: dose %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association '+', f, :doses, class: 'btn btn-add' %>
+    </div>
+  </div>
+
+  <hr>
+
+<h4>3. Describe Your Recipe</h4>
   <div class="row form-group">
     <%= f.label :name, class: 'col-sm-3 control-label no-padding padding-top', label: "Recipe Name" %>
 
@@ -22,18 +36,8 @@
   <%= f.hidden_field :dog_id, value: @user.dog.id %>
 
 <hr>
-  <h4>Select Your Ingredients</h4>
 
-  <div id="doses">
-    <%= f.simple_fields_for :doses do |dose| %>
-      <%= render 'dose_fields', f: dose %>
-    <% end %>
-    <div class="links">
-      <%= link_to_add_association '+', f, :doses, class: 'btn btn-add' %>
-    </div>
-  </div>
-  <hr>
-  <%= f.submit class: 'btn' %>
+  <%= f.submit class: 'btn btn-info' %>
 <% end %>
 
 
@@ -74,7 +78,7 @@
           $('#' + nutrient).attr('aria-valuenow', percentageValue);
           $('#' + nutrient + '_percent').html(Number((totalNutrients[nutrient]).toFixed(2)) + $('#' + nutrient + '_unit').html() + "   |   " + percentageValue + "%");
 
-          if (percentageValue <= 100) {
+          if (percentageValue < 100) {
             $('#' + nutrient).attr('style', "width: " + percentageValue + "%");
             $('#' + nutrient + '_percent').html(Number((totalNutrients[nutrient]).toFixed(2)) + $('#' + nutrient + '_unit').html() + "   |   " + percentageValue + "%" + "   |   need more");
             $('#' + nutrient).removeClass('progress-bar-danger');
@@ -86,7 +90,7 @@
             $('#' + nutrient).removeClass('progress-bar-danger');
             $('#' + nutrient).removeClass('progress-bar-warning');
             $('#' + nutrient).addClass('progress-bar-success');
-            if (nutrient == "fat_g" && percentageValue > 387) {
+            if (nutrient == "fat_g" && percentageValue > 597) {
               $('#' + nutrient + '_percent').html(Number((totalNutrients[nutrient]).toFixed(2)) + $('#' + nutrient + '_unit').html() + "   |   " + percentageValue + "%" + "   |   too much");
               $('#' + nutrient).removeClass('progress-bar-warning');
               $('#' + nutrient).removeClass('progress-bar-success');
@@ -98,7 +102,7 @@
               $('#' + nutrient).removeClass('progress-bar-success');
               $('#' + nutrient).addClass('progress-bar-danger');
             };
-            if (nutrient == "vitamin_a_iu" && percentageValue > 989) {
+            if (nutrient == "vitamin_a_iu" && percentageValue > 4221) {
               $('#' + nutrient + '_percent').html(Number((totalNutrients[nutrient]).toFixed(2)) + $('#' + nutrient + '_unit').html() + "   |   " + percentageValue + "%" + "   |   too much");
               $('#' + nutrient).removeClass('progress-bar-warning');
               $('#' + nutrient).removeClass('progress-bar-success');

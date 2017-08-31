@@ -15,7 +15,7 @@ class DogsController < ApplicationController
         @nutrition_req[nutrient] = amount
       end
       if @nutrition_req.save
-        flash[:notice] = "Thanks for adding your #{@dog.name}'s info! Based on the details you provided, #{@dog.name} has the daily nutritional requirements shown in the chart below, next to the bars. Go ahead and select some ingredients below to start creating your recipe and check if it fulfils #{@dog.name}'s minimum targets per day!"
+        flash[:notice] = "Based on the info you provided, #{@dog.name} has the daily nutritional requirements as shown next to the bars in the chart below. Go ahead and select some ingredients to start creating your recipe and check if it fulfils #{@dog.name}'s minimum targets!"
         redirect_to new_recipe_path
       else
         format.html { render 'pages/home' }
