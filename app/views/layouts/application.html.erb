@@ -10,7 +10,7 @@
     <title>Healthypaws</title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
     <title>
       <%=yield(:title_tag).blank? ? "Healthypaws | Create balanced recipes for your dog's nutritional needs" : yield(:title_tag) %>
 
@@ -27,7 +27,7 @@
       </div>
       <%= render 'shared/footer' %>
       <%= javascript_include_tag 'application' %>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
       <%= content_for(:inline_javascript) %>
     </div>
   </body>
