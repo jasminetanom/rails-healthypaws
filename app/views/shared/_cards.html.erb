@@ -7,7 +7,6 @@
         <% @recipes.last(3).each do |recipe| %>
           <%= link_to recipe do %>
             <div class="col-xs-12 col-sm-4">
-
               <div class="panel panel--card">
                 <div class="panel-body">
                   <div class="text-center">
@@ -19,7 +18,7 @@
                   <p class="recipe-ingredients">
                     <%= recipe.doses.first(2).map{ |dose| dose.ingredient.name }.join(', ') %>
                   </p>
-                  <p> Made by: <%= @user.first_name %></p>
+                  <p> Made by: <%= @user.last(3).first_name %></p>
                 </div>
               </div>
             </div>

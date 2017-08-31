@@ -52,7 +52,7 @@
 
           <div class="panel-body">
             <% if @recipes.empty? %>
-              <h3>You have not added a recipe yet</h3>
+              <p>You have not added a recipe yet</p>
               <div><%= link_to "Add a recipe", new_recipe_path, class: 'btn btn-primary' %></div>
             <% else %>
               <% @recipes.each do |recipe| %>
