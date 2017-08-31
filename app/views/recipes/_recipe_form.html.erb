@@ -1,10 +1,21 @@
-<% content_for(:title_tag) do %>
-  HealthyPaws | Create customized meals for your dog
-<% end %>
-<hr>
-<h4>Describe Your Recipe</h4>
+<br>
+
 
 <%= simple_form_for @recipe, class: 'form-recipe' do |f| %>
+  <h4>1. Select Your Ingredients</h4>
+
+  <div id="doses">
+    <%= f.simple_fields_for :doses do |dose| %>
+      <%= render 'dose_fields', f: dose %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association '+', f, :doses, class: 'btn btn-add' %>
+    </div>
+  </div>
+
+  <hr>
+
+<h4>3. Describe Your Recipe</h4>
   <div class="row form-group">
     <%= f.label :name, class: 'col-sm-3 control-label no-padding padding-top', label: "Recipe Name" %>
 
@@ -25,18 +36,8 @@
   <%= f.hidden_field :dog_id, value: @user.dog.id %>
 
 <hr>
-  <h4>Select Your Ingredients</h4>
 
-  <div id="doses">
-    <%= f.simple_fields_for :doses do |dose| %>
-      <%= render 'dose_fields', f: dose %>
-    <% end %>
-    <div class="links">
-      <%= link_to_add_association '+', f, :doses, class: 'btn btn-add' %>
-    </div>
-  </div>
-  <hr>
-  <%= f.submit class: 'btn' %>
+  <%= f.submit class: 'btn btn-info' %>
 <% end %>
 
 
