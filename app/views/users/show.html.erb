@@ -20,7 +20,7 @@
             <h4><strong>About <%= @user.first_name %>'s Dog</strong></h4>
               <div class="panel-body">
                 <% if @dog.nil? %>
-                <p><%= @user.first_name %> hasn't told us about your dog yet.</p>
+                <p>You hasn't told us about your dog yet.</p>
                 <div class="row-action-button">
                   <a href="/recipes/new" class="btn btn-info" role="button">Add your dog's info and start creating a recipe</a>
                 </div>
@@ -72,8 +72,8 @@
 
 
             <% if @recipes.empty? %>
-              <h3>You have not added a recipe yet</h3>
-              <div><%= link_to "Add a recipe", new_recipe_path, class: 'btn btn-primary' %></div>
+              <p>You haven't added a recipe yet</p>
+              <div><%= link_to "Add a recipe", new_recipe_path, class: 'btn btn-info' %></div>
             <% else %>
               <table class = "table">
                 <% @recipes.each do |recipe| %>
