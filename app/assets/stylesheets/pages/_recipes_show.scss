@@ -36,32 +36,31 @@ span:active {
 }
 
 .active span, .active-2 span {
-  color: #F5CC27 !important;
+  color: #DFBA69 !important;
 }
 
 .favorite-msg {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
   font-weight: 600;
-  text-transform: uppercase;
   white-space: nowrap;
   color: grey;
   position: relative;
   top: 30px;
   left: -46px;
   opacity: 0;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
 }
 
 .favorite-msg-tog {
-  color: #F5CC27;
+  color: #DFBA69;
   position: relative;
-  top: 45px;
+  top: 35px;
   opacity: 1;
 }
 
 * {
-  transition: all .32s ease;
+  transition: all .42s ease;
 }
 
 .social-icons {
@@ -69,3 +68,15 @@ span:active {
   margin-top: 27px;
 }
 
+.icon-inline {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.no-left-margin {
+  margin-left: 0px;
+}
+
+.no-right-margin {
+  margin-right: 0px;
+}
