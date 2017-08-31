@@ -64,11 +64,11 @@ class RecipesController < ApplicationController
         redirect_to recipe_path(@recipe), notice: 'Congrats! You\'ve successfully created a recipe.'
       else
 
-        puts "111 #{@recipe_nutrition_info.errors.inspect}"
+        # puts "111 #{@recipe_nutrition_info.errors.inspect}"
         render :new
       end
     else
-      puts "222 #{@recipe.errors.inspect}"
+      # puts "222 #{@recipe.errors.inspect}"
       render :new
     end
   end
