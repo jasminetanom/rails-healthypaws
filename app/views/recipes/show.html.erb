@@ -4,18 +4,22 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
 
 <div class="container container-recipe-show">
-  <div class="clearfix">
+<!--   <div class="clearfix">
     <div class='pull-right'>
       <%= link_to "Edit Recipe", edit_recipe_path, class: 'btn btn-info' %>
     </div>
     <div class='text-left'>
       <%= link_to "Back to Recipe Book", recipe_book_path, class: 'btn btn-primary' %>
-    </div>
+    </div> -->
     <!-- <h6>
       Delete Recipe - needs to be linked
     </h6> -->
-  </div>
-  <div class="row">
+<!--   </div> -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel">
+    <div class="panel-body">
+      <div class="row">
     <div class="col-sm-1 col-sm-offset-2">
       <!-- Star for favoriting recipes to save into the Recipe Book  -->
       <div class="favorite-star <%= 'active' if @is_recipe_favorited %>" data-recipe-id="<%= @recipe.id %>">
@@ -24,62 +28,127 @@
       </div>
     </div>
     <div class="col-sm-6">
-      <h3>Recipe for <%= @recipe.name %></h3>
+
+      <h3><%= @recipe.name %></h3>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-2">
       <div class="social-icons">
-        <span class="fa fa-weibo"></span>&nbsp;&nbsp;&nbsp;
-        <span class="fa fa-facebook-square"></span>&nbsp;&nbsp;&nbsp;
-        <span class="fa fa-twitter-square"></span>&nbsp;&nbsp;&nbsp;
-        <span class="fa fa-instagram"></span>&nbsp;&nbsp;&nbsp;
-        <span class="fa fa-pinterest-square"></span>
+        <span class="fa fa-weibo icon-inline no-left-margin"></span>
+        <span class="fa fa-facebook-square icon-inline"></span>
+        <span class="fa fa-twitter-square icon-inline"></span>
+        <span class="fa fa-instagram icon-inline"></span>
+        <span class="fa fa-pinterest-square icon-inline no-right-margin"></span>
       </div>
     </div>
   </div>
+    </div>
+    </div>
+    </div>
+  </div>
+
 
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-7">
 
       <div class="panel">
         <div class="panel-body">
           <h4>Nutritional Information</h4>
-
-          <hr/>
-
-          <% @nutrients.each do |nutrient| %>
+          <% if @user.dog.present? %>
             <div class="row">
-              <div class="col-md-6 text-right">
-                <%= nutrient.split('_')[0...-1].join(' ').titlecase %>
+                <div class="col-xs-3 progress-title text-align-right"></br><strong>Nutrient</strong></div>
+                <div class="col-xs-6 progress-title"><strong>Percentage of <%= @user.dog.name.capitalize %>'s Daily Requirements Fulfilled by This Recipe (<%= @recipe.name %>)</strong></div>
+                <div class="col-xs-3 progress-title text-align-left"><strong><%= @user.dog.name.capitalize %>'s Minimum Target Per Day</strong></div>
               </div>
-              <div class="col-md-6">
-                <%= '%.1f' % @recipe_nutrition_info[nutrient] %>
-                <%= nutrient.split('_')[-1] %>
+              <div class="row">
+              <hr class="hr-less-padding">
               </div>
-            </div>
+            <% @nutrients.each do |nutrient| %>
+              <div class="row">
+                <div class="col-xs-3 no-padding">
+                  <div class="nutrient-label">
+                    <%= nutrient.split('_')[0...-1].join(' ').titlecase %>
+                    <button type="button" class="btn btn-nutrient-info" id=<%= nutrient + "_popover" %> data-container="body" data-toggle="popover" data-placement="right" data-content="">?</button>
+                  </div>
+                </div>
+                <div class="col-xs-6 no-padding">
+                  <div class="progress">
+                    <% nutrient_percent = '%.2f' % (@recipe_nutrition_info[nutrient] / @nutrition_req[nutrient] * 100)  %>
+                    <% percentage_value = (@recipe_nutrition_info[nutrient] / @nutrition_req[nutrient] * 100) %>
+                    <% if (percentage_value < 100) %>
+                      <div class="nutrient-progress-percentage-label" id=<%= nutrient + "_percent" %>><%= '%.2f' % @recipe_nutrition_info[nutrient] + nutrient.split('_')[-1] + "   |   " + nutrient_percent + "%" + "   |   need more"%></div>
+                      <div class="progress-bar progress-bar-warning progress-bar-striped active" id=<%= nutrient %> role="progressbar" style="width: <%= percentage_value %>%" aria-valuenow=<%= nutrient_percent %> aria-valuemin="0" aria-valuemax="100"></div>
+                    <% elsif (nutrient == "fat_g" && percentage_value > 597) %>
+                      <div class="nutrient-progress-percentage-label" id=<%= nutrient + "_percent" %>><%= '%.2f' % @recipe_nutrition_info[nutrient] + nutrient.split('_')[-1] + "   |   " + nutrient_percent + "%" + "   |   too much" %></div>
+                      <div class="progress-bar progress-bar-danger progress-bar-striped active" id=<%= nutrient %> role="progressbar" style="width: 100%" aria-valuenow=<%= nutrient_percent %> aria-valuemin="0" aria-valuemax="100"></div>
+                    <% elsif (nutrient == "calcium_mg" && percentage_value > 150) %>
+                      <div class="nutrient-progress-percentage-label" id=<%= nutrient + "_percent" %>><%= '%.2f' % @recipe_nutrition_info[nutrient] + nutrient.split('_')[-1] + "   |   " + nutrient_percent + "%" + "   |   too much" %></div>
+                      <div class="progress-bar progress-bar-danger progress-bar-striped active" id=<%= nutrient %> role="progressbar" style="width: 100%" aria-valuenow=<%= nutrient_percent %> aria-valuemin="0" aria-valuemax="100"></div>
+                    <% elsif (nutrient == "vitamin_a_iu" && percentage_value > 4221) %>
+                      <div class="nutrient-progress-percentage-label" id=<%= nutrient + "_percent" %>><%= '%.2f' % @recipe_nutrition_info[nutrient] + nutrient.split('_')[-1] + "   |   " + nutrient_percent + "%" + "   |   too much" %></div>
+                      <div class="progress-bar progress-bar-danger progress-bar-striped active" id=<%= nutrient %> role="progressbar" style="width: 100%" aria-valuenow=<%= nutrient_percent %> aria-valuemin="0" aria-valuemax="100"></div>
+                    <% elsif (nutrient == "vitamin_d_iu" && percentage_value > 588) %>
+                      <div class="nutrient-progress-percentage-label" id=<%= nutrient + "_percent" %>><%= '%.2f' % @recipe_nutrition_info[nutrient] + nutrient.split('_')[-1] + "   |   " + nutrient_percent + "%" + "   |   too much" %></div>
+                      <div class="progress-bar progress-bar-danger progress-bar-striped active" id=<%= nutrient %> role="progressbar" style="width: 100%" aria-valuenow=<%= nutrient_percent %> aria-valuemin="0" aria-valuemax="100"></div>
+                    <% else %>
+                      <div class="nutrient-progress-percentage-label" id=<%= nutrient + "_percent" %>><%= '%.2f' % @recipe_nutrition_info[nutrient] + nutrient.split('_')[-1] + "   |   " + nutrient_percent + "%" %></div>
+                      <div class="progress-bar progress-bar-success progress-bar-striped active" id=<%= nutrient %> role="progressbar" style="width: 100%" aria-valuenow=<%= nutrient_percent %> aria-valuemin="0" aria-valuemax="100"></div>
+                    <% end %>
+
+                  </div>
+                  <span hidden="hidden" id=<%= nutrient + "_val" %>>
+                    <%= @nutrition_req[nutrient] %>
+                  </span>
+                  <span hidden="hidden" id=<%= nutrient + "_unit" %>>
+                    <%= nutrient.split('_')[-1] %>
+                  </span>
+                </div>
+                <div class="col-xs-3 no-padding">
+                  <div class="nutrient-amount">
+                    <button type="button" class="btn btn-nutrient-info" id=<%= nutrient + "_sources" %> data-container="body" data-toggle="popover" data-placement="right" data-content="">i</button>
+                    <%= '%.2f' % @nutrition_req[nutrient] %> <%= nutrient.split('_')[-1] %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+          <% else %>
+            <table class = "table">
+              <% @nutrients.each do |nutrient| %>
+                <tr>
+                  <td>
+                    <%= nutrient.split('_')[0...-1].join(' ').titlecase %>
+                    <button type="button" class="btn btn-nutrient-info" id=<%= nutrient + "_popover" %> data-container="body" data-toggle="popover" data-placement="right" data-content="">?</button>
+                  </td>
+                  <td>
+                    <%= '%.2f' % @recipe_nutrition_info[nutrient] %>
+                    <%= nutrient.split('_')[-1] %>
+                    <button type="button" class="btn btn-nutrient-info" id=<%= nutrient + "_sources" %> data-container="body" data-toggle="popover" data-placement="right" data-content="">i</button>
+                  </td>
+                  </tr>
+              <% end %>
+            </table>
           <% end %>
         </div>
       </div>
     </div>
 
 
-    <div class="col-sm-6">
+    <div class="col-sm-5">
       <div class="panel">
         <div class="panel-body">
           <h4>Ingredients</h4>
-
-
-          <hr/>
-
+          <table class = "table">
           <% @recipe.doses.each do |dose| %>
-            <div class="row">
-              <div class="col-md-8 text-right">
+            <tr>
+              <td>
                 <%= dose.ingredient.name %>
-              </div>
-              <div class="col-md-4">
-                <%= dose.amount %>
-              </div>
-            </div>
+              </td>
+              <td>
+                <%= dose.amount %> g
+              </td>
+            </tr>
           <% end %>
+          </table>
         </div>
       </div>
     </div>

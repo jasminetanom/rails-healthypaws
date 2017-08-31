@@ -1,11 +1,25 @@
 <% content_for(:title_tag) do %>
   HealthyPaws | Tell us about your dog
 <% end %>
-<div class="row">
-  <div class="col-xs-12 col-sm-offset-3 col-sm-6">
-    <h1>Build your recipe</h1>
-    <div class="recipe-builder">
-      <%= render "shared/create_dog_form" %>
+
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+
+          <div class="panel-body create-dog-background">
+            <h3><strong>TELL US ABOUT YOUR DOG</strong></h3>
+          </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="panel">
+          <div class="panel-body">
+            <div class="col-sm-offset-3 col-sm-6">
+            <%= render "shared/create_dog_form" %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+

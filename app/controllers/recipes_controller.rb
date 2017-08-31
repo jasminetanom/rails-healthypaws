@@ -21,6 +21,8 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @user = current_or_guest_user
+    @nutrition_req = @user.dog.nutrition_req if @user.dog.present?
     @recipe = Recipe.find(params[:id])
     @nutrients = %w(energy_kcal protein_g fat_g calcium_mg iron_mg magnesium_mg phosphorus_mg potassium_mg sodium_mg zinc_mg thiamin_mg riboflavin_mg niacin_mg pyridoxine_mg folate_ug vitamin_b12_ug vitamin_a_iu vitamin_e_mg vitamin_d_iu)
     @recipe_nutrition_info = RecipeNutritionInfo.find_by(recipe_id: @recipe.id)
