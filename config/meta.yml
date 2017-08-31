@@ -1,0 +1,7 @@
+
+
+meta_product_name: "HealthyPaws"
+meta_title: "HealthyPaws- the best meals for your dog"
+meta_description: "Create complete and balanced recipes customized to your dog's nutritional needs"
+meta_image: "logo.png"                       # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards
