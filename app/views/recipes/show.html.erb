@@ -18,7 +18,7 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="panel">
-    <div class="panel-body">
+    <div class="panel-body recipe-show-background">
       <div class="row">
     <div class="col-sm-1 col-sm-offset-2">
       <!-- Star for favoriting recipes to save into the Recipe Book  -->
@@ -29,7 +29,8 @@
     </div>
     <div class="col-sm-6">
 
-      <h3><%= @recipe.name %></h3>
+      <h3><strong><%= @recipe.name.upcase %></strong></h3>
+      <p>By: <%= link_to @recipe.dog.user.first_name, user_path(@recipe.dog.user) %></p>
     </div>
     <div class="col-sm-2">
       <div class="social-icons">
@@ -154,3 +155,64 @@
     </div>
   </div>
 </div>
+
+<% content_for(:inline_javascript) do %>
+  <script>
+  var totalNutrients = {energy_kcal:0,protein_g:0,fat_g:0,fiber_g:0,calcium_mg:0,iron_mg:0,magnesium_mg:0,phosphorus_mg:0,potassium_mg:0,sodium_mg:0,zinc_mg:0,niacin_mg:0,pyridoxine_mg:0,folate_ug:0,vitamin_b12_ug:0,vitamin_a_iu:0,vitamin_e_mg:0,vitamin_d_iu:0,riboflavin_mg:0,thiamin_mg:0}
+
+  var nutrientInfos = {
+    energy_kcal:"Dogs need energy to sustain their normal daily activities.",
+    protein_g:"Dogs need protein to develop, grow and function properly",
+    fat_g:"Dogs need fats to have healthy skin, coat, vision and cognition",
+    calcium_mg:"Dogs need calcium for healthy bones and muscles",
+    iron_mg:"Dogs need iron to grow and to be alert and strong",
+    magnesium_mg:"Dogs need magnesium to have a healthy weight and nervous system",
+    phosphorus_mg:"Dogs need phosphorus to have a healthy appetite and skeleton",
+    potassium_mg:"Dogs need potassium for strength and growth",
+    sodium_mg:"Dogs need sodium for a healthy circulatory system",
+    zinc_mg:"Dogs need zinc to have healthy weight and skin",
+    niacin_mg:"(a.k.a. Vitamin B3) Dogs need niacin for proper enzyme functions",
+    pyridoxine_mg:"(a.k.a. Vitamin B6) Dogs need pyrodoxine to have a healthy nervous and circulatory system",
+    folate_ug:"(a.k.a. Folic Acid/Vitamin B9) Dogs need folate for proper metabolism and protein synthesis",
+    vitamin_b12_ug:"Dogs need Vitamin B12 for proper enzyme functions",
+    vitamin_a_iu:"Dogs need Vitamin A for for proper vision, growth, skin and immune function",
+    vitamin_e_mg:"Dogs need Vitamin E to prevent degeneration of muscles, bones and vision",
+    vitamin_d_iu:"Dogs need Vitamin D for healthy muscles and bones",
+    riboflavin_mg:"(a.k.a. Vitamin B2) Dogs need riboflacin for proper enzyme functions",
+    thiamin_mg:"(a.k.a. Vitamin B1) Dogs need thiamin for healthy metabolism, cognition and nervous system"
+  }
+
+  var nutrientSources = {
+    energy_kcal:"sweet potatos, bananas or pumpkin",
+    protein_g:"fish, eggs or dairy products",
+    fat_g:"fish or eggs",
+    calcium_mg:"cheese or brocolli",
+    iron_mg:"liver, fish or green vegetables",
+    magnesium_mg:"fish, beans or organ meats",
+    phosphorus_mg:"more meat",
+    potassium_mg:"bananas, potatoes or carrots",
+    sodium_mg:"poultry, fish or eggs ",
+    zinc_mg:"more meat",
+    niacin_mg:"organ meats, eggs or legumes",
+    pyridoxine_mg:"muscle and organ meats, eggs or dairy",
+    folate_ug:"liver, kidney or green vegetables",
+    vitamin_b12_ug:"organ meats",
+    vitamin_a_iu:" liver, fish or eggs",
+    vitamin_e_mg:"green leafy vegetables",
+    vitamin_d_iu:"oil fish (sardines, salmon, tuna), eggs or dairy products",
+    riboflavin_mg:"liver, cheese or eggs",
+    thiamin_mg:"quinoa or barley"
+  }
+
+
+$(document).ready(function(){
+  Object.keys(totalNutrients).forEach(function(nutrient) {
+    $('#' + nutrient + '_popover').attr('data-content', nutrientInfos[nutrient]);
+    $('#' + nutrient + '_popover').popover()
+    $('#' + nutrient + '_sources').attr('data-content', "Need more? Try adding " + nutrientSources[nutrient]);
+    $('#' + nutrient + '_sources').popover()
+  });
+});
+  </script>
+<% end %>
+

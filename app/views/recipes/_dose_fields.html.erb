@@ -9,6 +9,7 @@
       </div>
       <div class="row">
         <div class="col-sm-12">
+          <%= f.label :amount, label: "Amount in grams (g):" %>
           <%= f.input :amount, label: false, as: :slider, placeholder: 'Amount', input_html: { class: 'ingredient_amount' } %>
         </div>
       </div>
@@ -17,3 +18,109 @@
 
 </div>
 
+<% content_for(:inline_javascript) do %>
+  <script>
+
+    function updateVisualization() {
+        var ids = [];
+        $('.ingredient_name').each(function(i, item) {
+          if ($(item).val() !== '') {
+            ids.push($(item).val());
+          }
+        });
+
+
+        var amounts = [];
+        $('.ingredient_amount').each(function(i, item) {
+          amounts.push($(item).val());
+        });
+
+
+        Object.keys(totalNutrients).forEach(function(nutrient) {
+          totalNutrients[nutrient] = 0
+        });
+
+
+        for (var i = 0; i < ids.length; i += 1) {
+          Object.keys(totalNutrients).forEach(function(nutrient) {
+            var ingredient = ingredients.find(function(ingredient) {
+              return ids[i] == ingredient.id;
+            });
+            totalNutrients[nutrient] = totalNutrients[nutrient] + ingredient[nutrient] * amounts[i]
+          });
+        }
+
+        Object.keys(totalNutrients).forEach(function(nutrient) {
+          var percentageValue = Math.round(totalNutrients[nutrient] / $('#' + nutrient + '_val').html() * 100);
+          $('#' + nutrient).attr('aria-valuenow', percentageValue);
+          $('#' + nutrient + '_percent').html(Number((totalNutrients[nutrient]).toFixed(2)) + $('#' + nutrient + '_unit').html() + "   |   " + percentageValue + "%");
+
+          if (percentageValue < 100) {
+            $('#' + nutrient).attr('style', "width: " + percentageValue + "%");
+            $('#' + nutrient + '_percent').html(Number((totalNutrients[nutrient]).toFixed(2)) + $('#' + nutrient + '_unit').html() + "   |   " + percentageValue + "%" + "   |   need more");
+            $('#' + nutrient).removeClass('progress-bar-danger');
+            $('#' + nutrient).removeClass('progress-bar-success');
+            $('#' + nutrient).addClass('progress-bar-warning');
+
+          } else {
+            $('#' + nutrient).attr('style', "width: 100%");
+            $('#' + nutrient).removeClass('progress-bar-danger');
+            $('#' + nutrient).removeClass('progress-bar-warning');
+            $('#' + nutrient).addClass('progress-bar-success');
+            if (nutrient == "fat_g" && percentageValue > 597) {
+              $('#' + nutrient + '_percent').html(Number((totalNutrients[nutrient]).toFixed(2)) + $('#' + nutrient + '_unit').html() + "   |   " + percentageValue + "%" + "   |   too much");
+              $('#' + nutrient).removeClass('progress-bar-warning');
+              $('#' + nutrient).removeClass('progress-bar-success');
+              $('#' + nutrient).addClass('progress-bar-danger');
+            };
+            if (nutrient == "calcium_mg" && percentageValue > 150) {
+              $('#' + nutrient + '_percent').html(Number((totalNutrients[nutrient]).toFixed(2)) + $('#' + nutrient + '_unit').html() + "   |   " + percentageValue + "%" + "   |   too much");
+              $('#' + nutrient).removeClass('progress-bar-warning');
+              $('#' + nutrient).removeClass('progress-bar-success');
+              $('#' + nutrient).addClass('progress-bar-danger');
+            };
+            if (nutrient == "vitamin_a_iu" && percentageValue > 4221) {
+              $('#' + nutrient + '_percent').html(Number((totalNutrients[nutrient]).toFixed(2)) + $('#' + nutrient + '_unit').html() + "   |   " + percentageValue + "%" + "   |   too much");
+              $('#' + nutrient).removeClass('progress-bar-warning');
+              $('#' + nutrient).removeClass('progress-bar-success');
+              $('#' + nutrient).addClass('progress-bar-danger');
+            };
+            if (nutrient == "vitamin_d_iu" && percentageValue > 588) {
+              $('#' + nutrient + '_percent').html(Number((totalNutrients[nutrient]).toFixed(2)) + $('#' + nutrient + '_unit').html() + "   |   " + percentageValue + "%" + "   |   too much");
+              $('#' + nutrient).removeClass('progress-bar-warning');
+              $('#' + nutrient).removeClass('progress-bar-success');
+              $('#' + nutrient).addClass('progress-bar-danger');
+            };
+          };
+
+        });
+
+
+
+    }
+
+    $('#doses').on('cocoon:after-insert', function(e, insertedItem) {
+      $('#doses .bootstrap-slider').slider({});
+    });
+
+
+    var ingredients = <%= raw Ingredient.order(:name).to_json %>;
+
+    var totalNutrients = {energy_kcal:0,protein_g:0,fat_g:0,fiber_g:0,calcium_mg:0,iron_mg:0,magnesium_mg:0,phosphorus_mg:0,potassium_mg:0,sodium_mg:0,zinc_mg:0,niacin_mg:0,pyridoxine_mg:0,folate_ug:0,vitamin_b12_ug:0,vitamin_a_iu:0,vitamin_e_mg:0,vitamin_d_iu:0,riboflavin_mg:0,thiamin_mg:0}
+
+
+    $(document).ready(function() {
+
+      $(document).on('change', '.bootstrap-slider', function(event) {
+        updateVisualization();
+      });
+      $(document).on('change', '.ingredient_name', function(event) {
+        updateVisualization();
+      });
+      $(document).on('click', '.btn-minus', function(event) {
+        updateVisualization();
+      });
+
+    });
+  </script>
+<% end %>
