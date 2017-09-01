@@ -29,7 +29,7 @@ human_url = ["http://lorempixel.com/250/250/people/1","http://lorempixel.com/250
     remote_photo_url: dog_url.sample
   })
 
-  3.times do
+  2.times do
     recipe = Recipe.create({
       name: Faker::Food.dish,
       dog: dog,
