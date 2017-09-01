@@ -4,7 +4,7 @@
       <div class="row">
       <%= link_to_remove_association "X", f, class: 'btn btn-minus' %>
         <div class="col-sm-12">
-          <%= f.input :ingredient_id, label: false, collection: Ingredient.all, input_html: { class: 'ingredient_name select-ingredient-name' } %>
+          <%= f.input :ingredient_id, label: false, collection: Ingredient.order(:name), input_html: { class: 'ingredient_name select-ingredient-name' } %>
         </div>
       </div>
       <div class="row">

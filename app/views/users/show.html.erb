@@ -6,7 +6,7 @@
   <div class="col-sm-12">
     <div class="panel">
     <div class="panel-body profile-background">
-      <h3><strong>WELCOME TO <%= @user.first_name.upcase %>'S PROFILE!</strong></h3>
+      <h3><strong>WELCOME TO <%= @user.first_name.upcase %>'S PROFILE</strong></h3>
     </div>
     </div>
     </div>
@@ -18,6 +18,7 @@
         <div class="panel">
           <div class="panel-heading">
             <h4><strong>About <%= @user.first_name %>'s Dog</strong></h4>
+              <hr class="hr-less-padding">
               <div class="panel-body">
                 <% if @dog.nil? %>
                 <p>You hasn't told us about your dog yet.</p>
@@ -33,15 +34,15 @@
                     <% else %>
                       <%= @dog.name %> hasn't been neutered/spayed.
                     <% end %>
-                  <%= @dog.name %> is
-                    <%= "underweight" if @dog.body_condition_score == 1 %>
-                    <%= "lean" if @dog.body_condition_score == 2 %>
-                    <%= "ideal" if @dog.body_condition_score == 3 %>
-                    <%= "overwekgnt" if @dog.body_condition_score == 4 %>
-                    <%= "obese" if @dog.body_condition_score == 5 %>
+                  <%= @dog.name %>
+                    <%= "is underweight" if @dog.body_condition_score == 1 %>
+                    <%= "is lean" if @dog.body_condition_score == 2 %>
+                    <%= "has ideal weight" if @dog.body_condition_score == 3 %>
+                    <%= "is overweight" if @dog.body_condition_score == 4 %>
+                    <%= "is obese" if @dog.body_condition_score == 5 %>
                   with a body condition score of <%= @dog.body_condition_score %>.</p>
               </div>
-
+            <hr class="hr-less-padding">
             <div class="panel-body">
               <h4><strong><%= @dog.name.titlecase %>'s Daily Nutritional Requirements</strong></h4>
 

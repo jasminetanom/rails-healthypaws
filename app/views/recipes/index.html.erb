@@ -14,7 +14,7 @@
             <label>Filter by ingredient:</label>
             <select type="search" name="ingredient">
                 <option></option>
-                <% Ingredient.find_each do |ingredient| %>
+                <% Ingredient.order(:name).find_each do |ingredient| %>
                   <option><%= ingredient.name %></option>
                 <% end %>
             </select>
