@@ -144,6 +144,9 @@ hr {
  }
 
 .recipe-title__dog {
+  display: inline-block;
+  border-bottom: 5px solid #008CA3;
+  line-height: 0.5;
   text-decoration-line: underline;
   text-decoration-color: #008CA3;
 }
