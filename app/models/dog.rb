@@ -45,7 +45,6 @@ class Dog < ApplicationRecord
 
   private
 
-
   def get_reqs(weight, multiplier, life_stage)
     resting_energy_req = 70 * ((weight.to_f) ** 0.75)
     daily_energy_req = resting_energy_req * multiplier
