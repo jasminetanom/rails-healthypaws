@@ -2,47 +2,91 @@
 
 
 <%= simple_form_for @recipe, class: 'form-recipe' do |f| %>
-  <h4>1. Select Your Ingredients</h4>
+  <h4>Recipe Ingredients</h4>
+
+  <%= f.hidden_field :dog_id, value: @user.dog.id %>
 
   <div id="doses">
     <%= f.simple_fields_for :doses do |dose| %>
       <%= render 'dose_fields', f: dose %>
     <% end %>
     <div class="links">
-      <%= link_to_add_association '+', f, :doses, class: 'btn btn-add' %>
+      <%= link_to_add_association '+ Add Ingredient', f, :doses, class: 'btn btn-default btn-outline' %>
     </div>
   </div>
 
-  <hr>
+  <div class="form-submission-section hide">
+    <hr/>
 
-<h4>3. Describe Your Recipe</h4>
-  <div class="row form-group">
-    <%= f.label :name, class: 'col-sm-3 control-label no-padding padding-top', label: "Recipe Name" %>
-
-    <div class="col-sm-9 no-left-padding">
-      <%= f.text_field :name, placeholder: "Pawtastic Chicken and Broccoli", class: 'form-control' %>
-    </div>
+    <%= link_to 'Save Recipe', 'javascript:showRecipeNameModal();', class: 'btn btn-info' %>
   </div>
 
-   <div class="row form-group">
-    <%= f.label :photo, class: 'col-sm-3 control-label no-padding', label: "Recipe Photo (recommended)" %>
+  <div class="modal fade" id="recipe-name-form-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="exampleModalLabel">Almost there ~ Give your recipe a name</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal">
+            <div class="row form-group">
+              <label for="recipient-name" class="col-sm-2 control-label">Name:</label>
+              <div class="col-sm-10">
+                <%= f.input :name, label: false, input_html: { class: 'form-control' } %>
+              </div>
+            </div>
 
-    <div class="col-sm-9 no-left-padding">
-      <%= f.file_field :photo, class: 'form-control' %>
-      <%= f.input :photo_cache, as: :hidden %>
+            <div class="row form-group">
+              <label for="recipient-name" class="col-sm-2 control-label">Photo:</label>
+              <div class="col-sm-10">
+                <%= f.input :photo, label: false, input_html: {class: 'form-control'} %>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+          <button type="button" onclick="onModalNameFormSubmitted()" class="btn btn-primary">Done !</button>
+        </div>
+      </div>
     </div>
   </div>
-
-  <%= f.hidden_field :dog_id, value: @user.dog.id %>
-
-<hr>
-
-  <%= f.submit class: 'btn btn-info' %>
 <% end %>
 
 
 <% content_for(:inline_javascript) do %>
   <script>
+
+    function onModalNameFormSubmitted() {
+      var recipeName = $('#recipe_name').val();
+
+      if (recipeName.length > 0) {
+        $('#new_recipe').submit();
+      } else {
+        alert('Please give your recipe a name.');
+      }
+    }
+
+    function showRecipeNameModal() {
+      var anyEmptySelectInput = $('.select-ingredient-name').filter(function(index, ingredientSelectItem) {
+        return $(ingredientSelectItem).val() == '';
+      })
+
+      if (anyEmptySelectInput.length > 0) {
+        alert('Please select ingredient');
+      } else {
+        $('#recipe-name-form-modal').modal({});
+      }
+    }
+
+    function showHideSubmissionSection() {
+      if ($('.dose-nested-fields').length > 0) {
+        $('.form-submission-section').removeClass('hide');
+      } else {
+        $('.form-submission-section').addClass('hide');
+      }
+    }
 
     function updateVisualization() {
         var ids = [];
@@ -124,8 +168,17 @@
 
     $('#doses').on('cocoon:after-insert', function(e, insertedItem) {
       $('#doses .bootstrap-slider').slider({});
+
+      showHideSubmissionSection();
     });
 
+    $('#doses').on('cocoon:after-remove', function(e, insertedItem) {
+      updateVisualization();
+
+      showHideSubmissionSection();
+    });
+
+    showHideSubmissionSection();
 
     var ingredients = <%= raw Ingredient.order(:name).to_json %>;
 
