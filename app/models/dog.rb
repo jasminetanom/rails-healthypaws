@@ -4,7 +4,6 @@ class Dog < ApplicationRecord
   has_many :recipes, dependent: :destroy
 
   validates :user, :name, :weight, :activity_level, :life_stage, :body_condition_score, presence: true
-  validates :name, format: { with: /\A[a-zA-Z]+\z/,
     message: "only allows letters" }, length: { minimum: 2, maximum: 20, too_long: "20 characters is the maximum allowed" }
   validates :body_condition_score, numericality: { only_integer: true, greater_than: 0, less_than: 6 }
 
