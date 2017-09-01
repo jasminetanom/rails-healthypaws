@@ -16,10 +16,10 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="panel">
-          <div class="panel-heading">
-            <h4><strong>About <%= @user.first_name %>'s Dog</strong></h4>
-              <hr class="hr-less-padding">
+
               <div class="panel-body">
+              <h4><strong>About <%= @user.first_name %>'s Dog</strong></h4>
+              <hr class="hr-less-padding">
                 <% if @dog.nil? %>
                 <p>You hasn't told us about your dog yet.</p>
                 <div class="row-action-button">
@@ -27,7 +27,7 @@
                 </div>
                 <% else %>
 
-                  <p><%= dog_card_image @dog %></p>
+                  <p><%= dog_card_image @dog %><p>
                   <p><%= @dog.name %> is a <%= @dog.size %> breed <%= @dog.life_stage %> dog weighing <%= @dog.weight %>kg.
                     <% if @dog.is_sterilized %>
                       <%= @dog.name %> has been neutered/spayed.
@@ -43,7 +43,6 @@
                   with a body condition score of <%= @dog.body_condition_score %>.</p>
               </div>
             <hr class="hr-less-padding">
-            <div class="panel-body">
               <h4><strong><%= @dog.name.titlecase %>'s Daily Nutritional Requirements</strong></h4>
 
             <table class = "table">
@@ -63,6 +62,15 @@
                <% end %>
             </div>
           </div>
+
+<div class="col-sm-6">
+        <div class="panel">
+            <div class="panel-body">
+            <h4>Meet <%= @user.first_name %></h4>
+            <hr class="hr-less-padding">
+            <p><%= user_image @user %><p>
+            <p><%= mail_to @user.email, "Email Me", class: "btn btn-add" %><p>
+          </div>
         </div>
       </div>
 
@@ -76,17 +84,32 @@
               <p>You haven't added a recipe yet</p>
               <div><%= link_to "Add a recipe", new_recipe_path, class: 'btn btn-info' %></div>
             <% else %>
-              <table class = "table">
                 <% @recipes.each do |recipe| %>
-                  <tr>
-                    <td>
-                      <%= link_to recipe.name, recipe_path(recipe) %>
-                    </td>
-                  </tr>
-                <% end %>
-              </table>
-            <% end %>
-            <br>
+                  <%= link_to recipe do %>
+              <%= link_to recipe do %>
+              <div class="col-xs-12 col-sm-6">
+
+
+                <div class="panel panel--card">
+                  <div class="panel-body">
+                    <div class="text-center">
+                      <%= card_image_sm recipe %>
+                    </div>
+                    <h4 class="recipe-name">
+                      <%= recipe.name %>
+                    </h4>
+                    <p class="recipe-ingredients">
+                      Includes: <strong><%= recipe.doses.first(2).map{ |dose| dose.ingredient.name }.join(', ') %></strong>
+                    </p>
+                  </div>
+                </div>
+
+               </div>
+              <% end %>
+           <% end %>
+          <% end %>
+          <% end %>
+
 
           </div>
         </div>
@@ -111,13 +134,13 @@
     sodium_mg:"Dogs need sodium for a healthy circulatory system",
     zinc_mg:"Dogs need zinc to have healthy weight and skin",
     niacin_mg:"(a.k.a. Vitamin B3) Dogs need niacin for proper enzyme functions",
-    pyridoxine_mg:"(a.k.a. Vitamin B6) Dogs need pyrodoxine to have a healthy nervous and circulatory system",
+    pyridoxine_mg:"(a.k.a. Vitamin B6) Dogs need pyridoxine to have a healthy nervous and circulatory system",
     folate_ug:"(a.k.a. Folic Acid/Vitamin B9) Dogs need folate for proper metabolism and protein synthesis",
     vitamin_b12_ug:"Dogs need Vitamin B12 for proper enzyme functions",
     vitamin_a_iu:"Dogs need Vitamin A for for proper vision, growth, skin and immune function",
     vitamin_e_mg:"Dogs need Vitamin E to prevent degeneration of muscles, bones and vision",
     vitamin_d_iu:"Dogs need Vitamin D for healthy muscles and bones",
-    riboflavin_mg:"(a.k.a. Vitamin B2) Dogs need riboflacin for proper enzyme functions",
+    riboflavin_mg:"(a.k.a. Vitamin B2) Dogs need riboflavin for proper enzyme functions",
     thiamin_mg:"(a.k.a. Vitamin B1) Dogs need thiamin for healthy metabolism, cognition and nervous system"
   }
 
