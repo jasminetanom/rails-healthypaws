@@ -26,7 +26,7 @@
                 </div>
                 <% else %>
 
-                  <p><%= @dog.photo %></p>
+                  <p><%= dog_card_image @dog %></p>
                   <p><%= @dog.name %> is a <%= @dog.size %> breed <%= @dog.life_stage %> dog weighing <%= @dog.weight %>kg.
                     <% if @dog.is_sterilized %>
                       <%= @dog.name %> has been neutered/spayed.
