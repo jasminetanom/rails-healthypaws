@@ -10,7 +10,7 @@ class DogsController < ApplicationController
     @dog.photo = "http://res.cloudinary.com/tanjamiee/image/upload/v1504071221/Default_Dog_ueg4ej.png" if @dog.photo.blank?
 
     if @dog.save
-      @nutrition_req = dog.nutrition_req
+      @nutrition_req = @dog.nutrition_req
       flash[:notice] = "Based on the info you provided, #{@dog.name} has the daily nutritional requirements as shown next to the bars in the chart below. Go ahead and select some ingredients to start creating your recipe and check if it fulfils #{@dog.name}'s minimum targets!"
       redirect_to new_recipe_path
     else
