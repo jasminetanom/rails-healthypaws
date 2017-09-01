@@ -138,6 +138,10 @@
     <div class="col-sm-5">
       <div class="panel">
         <div class="panel-body">
+          <div class="text-center">
+          <%= card_image @recipe %>
+          </div>
+          <br>
           <h4>Ingredients</h4>
           <table class = "table">
           <% @recipe.doses.each do |dose| %>
