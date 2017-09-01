@@ -69,8 +69,8 @@ INGREDIENTS_MAP = [
     column_prefix: 'niacin'
   },
     {
-    name: 'Pyridoxine',#
-    column_prefix: 'pyridoxin'
+    name: 'Vitamin B-6',#
+    column_prefix: 'pyridoxine'
   },
   {
     name: 'Folate, DFE',#
