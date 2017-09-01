@@ -22,12 +22,14 @@
     <div class="panel">
       <div class="panel-body">
       <div class="row">
-        <h4>Your Recipe Nutrition Values</h4>
+        <div class="col-sm-offset-1 col-sm-10">
+        <h4>How does your current recipe fulfil <%= @user.dog.name.titlecase %>'s nutrient requirements?</h4>
+        </div>
       </div>
           <div class="row">
             <div class="col-xs-3 progress-title text-align-right"></br><strong>Nutrient</strong></div>
-            <div class="col-xs-6 progress-title"><strong>Percentage Fulfilled</strong></div>
-            <div class="col-xs-3 progress-title text-align-left"><strong><%= @user.dog.name.capitalize %>'s Minimum Daily Target</strong></div>
+            <div class="col-xs-6 progress-title"></br><strong>Percentage Fulfilled</strong></div>
+            <div class="col-xs-3 progress-title text-align-left"><strong><%= @user.dog.name.capitalize %>'s Daily Minimum</strong></div>
           </div>
           <div class="row">
           <hr class="hr-less-padding">
@@ -94,7 +96,7 @@
     vitamin_a_iu:"Dogs need Vitamin A for for proper vision, growth, skin and immune function",
     vitamin_e_mg:"Dogs need Vitamin E to prevent degeneration of muscles, bones and vision",
     vitamin_d_iu:"Dogs need Vitamin D for healthy muscles and bones",
-    riboflavin_mg:"(a.k.a. Vitamin B2) Dogs need riboflacin for proper enzyme functions",
+    riboflavin_mg:"(a.k.a. Vitamin B2) Dogs need riboflavin for proper enzyme functions",
     thiamin_mg:"(a.k.a. Vitamin B1) Dogs need thiamin for healthy metabolism, cognition and nervous system"
   }
 
@@ -129,5 +131,6 @@ $(document).ready(function(){
     $('#' + nutrient + '_sources').popover()
   });
 });
+
   </script>
 <% end %>

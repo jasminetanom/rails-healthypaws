@@ -54,15 +54,15 @@
       <div class="panel">
         <div class="panel-body">
           <% if @user.dog.present? %>
-            <h4>How does this recipe fulfil <%= @user.dog.name.capitalize %>'s daily nutritional needs? </h4>
-            <div class="row">
-                <div class="col-xs-3 progress-title text-align-right"></br><strong>Nutrient</strong></div>
-                <div class="col-xs-6 progress-title"><strong>Percentage of <%= @user.dog.name.capitalize %>'s Daily Requirements Fulfilled by This Recipe (<%= @recipe.name %>)</strong></div>
-                <div class="col-xs-3 progress-title text-align-left"><strong><%= @user.dog.name.capitalize %>'s Minimum Target Per Day</strong></div>
-              </div>
-              <div class="row">
-              <hr class="hr-less-padding">
-              </div>
+            <h4>How does this recipe fulfil <%= @user.dog.name.titlecase %>'s nutrient requirements?</h4>
+          <div class="row">
+            <div class="col-xs-3 progress-title text-align-right"></br><strong>Nutrient</strong></div>
+            <div class="col-xs-6 progress-title"></br><strong>Percentage Fulfilled</strong></div>
+            <div class="col-xs-3 progress-title text-align-left"><strong><%= @user.dog.name.capitalize %>'s Daily Minimum</strong></div>
+          </div>
+          <div class="row">
+          <hr class="hr-less-padding">
+          </div>
             <% @nutrients.each do |nutrient| %>
               <div class="row">
                 <div class="col-xs-3 no-padding">
@@ -113,7 +113,7 @@
             <% end %>
 
           <% else %>
-            <h4>Recipe Nutritional Info</h4>
+            <h4>Nutritional Info of Recipe</h4>
             <table class = "table">
               <% @nutrients.each do |nutrient| %>
                 <tr>
@@ -173,13 +173,13 @@
     sodium_mg:"Dogs need sodium for a healthy circulatory system",
     zinc_mg:"Dogs need zinc to have healthy weight and skin",
     niacin_mg:"(a.k.a. Vitamin B3) Dogs need niacin for proper enzyme functions",
-    pyridoxine_mg:"(a.k.a. Vitamin B6) Dogs need pyrodoxine to have a healthy nervous and circulatory system",
+    pyridoxine_mg:"(a.k.a. Vitamin B6) Dogs need pyridoxine to have a healthy nervous and circulatory system",
     folate_ug:"(a.k.a. Folic Acid/Vitamin B9) Dogs need folate for proper metabolism and protein synthesis",
     vitamin_b12_ug:"Dogs need Vitamin B12 for proper enzyme functions",
     vitamin_a_iu:"Dogs need Vitamin A for for proper vision, growth, skin and immune function",
     vitamin_e_mg:"Dogs need Vitamin E to prevent degeneration of muscles, bones and vision",
     vitamin_d_iu:"Dogs need Vitamin D for healthy muscles and bones",
-    riboflavin_mg:"(a.k.a. Vitamin B2) Dogs need riboflacin for proper enzyme functions",
+    riboflavin_mg:"(a.k.a. Vitamin B2) Dogs need riboflavin for proper enzyme functions",
     thiamin_mg:"(a.k.a. Vitamin B1) Dogs need thiamin for healthy metabolism, cognition and nervous system"
   }
 

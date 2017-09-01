@@ -1,31 +1,31 @@
 .nutrient-label {
-    line-height: 15px;
-    font-size: 12px;
+    line-height: 17px;
+    // font-size: 14px;
     text-align: right;
     padding-right: 5px;
 }
 
 .nutrient-amount {
-    line-height: 15px;
-    font-size: 12px;
+    line-height: 17px;
+    // font-size: 14px;
     text-align: left;
     padding-left: 5px
 }
 
 .progress-title{
-    line-height: 15px;
-    font-size: 12px;
+    line-height: 17px;
+    // font-size: 14px;
     text-align: center;
 }
 
 .progress {
-    height: 15px;
-    margin-bottom: 5px;
+    height: 17px;
+    margin-bottom: 7px;
     background-color: #008CA3
 }
 
 .progress-bar {
-    height: 15px;
+    height: 17px;
     position: absolute;
 }
 
@@ -39,8 +39,8 @@
 
 .nutrient-progress-percentage-label{
   text-align: center;
-  line-height: 15px;
-  font-size: 12px;
+  line-height: 17px;
+  font-size: 13px;
   overflow: hidden;
   color: #fff;
   right: 0;
@@ -63,13 +63,10 @@
 }
 
 .btn-add {
-  border-radius: 50%;
-  border: 1.2px solid #008CA3;
-  height: 25px;
-  width: 25px;
-  padding: 0;
-  margin: 5px;
-  color: #008CA3;
+    border: 1.2px solid #008CA3;
+    margin: 5px;
+    color: #008CA3;
+    border-radius: 100px;
 }
 
 .btn-minus {
@@ -87,7 +84,7 @@
 }
 
 .slider.slider-horizontal {
-    width: 350px;
+    width: 310px;
     height: 20px;
 }
 
@@ -124,8 +121,8 @@ hr {
 }
 
 .btn-nutrient-info {
-    font-size: 10px;
-    padding: 0px 5px;
+    font-size: 12px;
+    padding: 0px 7px;
     border-radius: 50%;
 }
 
@@ -139,9 +136,6 @@ hr {
     border-top: 2px solid rgba(0, 0, 0, 0.1);
  }
 
- .panel-fixed {
-  position: fixed;
- }
 
 .recipe-title__dog {
   display: inline-block;
@@ -151,11 +145,9 @@ hr {
   text-decoration-color: #008CA3;
 }
 
- .font-size-14px {
-  font-size: 14px;
- }
-
  body {
   font-size: 16px;
  }
+
+
 

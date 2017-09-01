@@ -23,15 +23,42 @@
 
     <div class="tab-content" id="mine">
       <div class="panel" id="my-recipes-section">
-<!--         <div class="panel-heading">
-          <h3>My Recipes</h3>
-        </div> -->
+
         <div class="panel-body no-padding">
           <div class="row-action-button">
             <a href="/recipes/new" class="btn btn-info" role="button">Create a new recipe</a>
           </div>
           <table class="table table-hover">
-              <%= render "shared/cards_browse" %>
+          <% if@user.dog.recipes.blank? %>
+            <br>
+            <p style="text-align:center">No recipes to show.</p>
+          <% else %>
+            <% @user.dog.recipes.each do |recipe| %>
+                  <%= link_to recipe do %>
+              <%= link_to recipe do %>
+              <div class="col-xs-12 col-sm-4">
+
+
+                <div class="panel panel--card">
+                  <div class="panel-body">
+                    <div class="text-center">
+                      <%= card_image recipe %>
+                    </div>
+                    <h4 class="recipe-name">
+                      <%= recipe.name %>
+                    </h4>
+                    <p class="recipe-ingredients">
+                      Includes: <strong><%= recipe.doses.first(2).map{ |dose| dose.ingredient.name }.join(', ') %></strong>
+                    </p>
+                    <p> By: <strong><%= recipe.dog.user.first_name %></strong></p>
+                  </div>
+                </div>
+
+               </div>
+              <% end %>
+           <% end %>
+          <% end %>
+        <% end %>
           </table>
         </div>
       </div>
@@ -39,16 +66,16 @@
 
     <div class="tab-content hidden" id="favorites">
       <div class="panel" id="favorite-recipes-section">
-<!--         <div class="panel-heading">
-           <h3>Favorited Recipes</h3>
-        </div> -->
         <div class="panel-body no-padding">
         <div class="row-action-button">
                   <a href="/recipes" class="btn btn-info" role="button">Find new favorite recipes</a>
             </div>
           <table class="table table-hover">
 
-
+<% if@user.favorite_recipes.blank? %>
+<br>
+            <p style="text-align:center">No recipes to show.</p>
+          <% else %>
               <% @user.favorite_recipes.each do |recipe| %>
                 <%= link_to recipe do %>
             <%= link_to recipe do %>
@@ -74,6 +101,7 @@
           <% end %>
         <% end %>
         <% end %>
+      <% end %>
           </table>
 
         </div>
