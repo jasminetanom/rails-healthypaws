@@ -1,7 +1,16 @@
+
+
 <% content_for(:title_tag) do %>
   HealthyPaws | Create balanced recipes for your dog's nutritional needs
 <% end %>
 <%= render "shared/banner_video" %>
-<%= render "shared/banner_middle" %>
+<div class="container">
+  <div class="row top-bottom-padding">
+    <div class="col-sm-offset-1 col-sm-10">
+      <%= image_tag 'http://res.cloudinary.com/tanjamiee/image/upload/v1504257080/home-banner_1_t7bmu7.png', style: "width: 100%" %>
+    </div>
+  </div>
+</div>
 
+<%= render "shared/banner_middle" %>
 
